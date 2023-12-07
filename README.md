@@ -30,12 +30,55 @@ And include the web component:
 <script src="probo-product-configurator.js" rel="text/javascript"></script>
 ```
 
-### Props
-
-The configurator accepst a product ID, based on this ID the first step is fetched from the Probo API, after the first step is completed the second step is fetched, etc.
-
 ```html
-<probo-product-configurator product="3032"></probo-product-configurator>
+<probo-product-configurator></probo-product-configurator>
+```
+
+### Proxy
+
+To access the Probo API a proxy is needed. The proxy calls the Probo API `https://api.proboprints.com` and needs to accept the endpoints from the request `body.url`. See below for an example.
+
+#### PHP
+
+```php
+<?php
+
+$rawData = file_get_contents('php://input');
+
+$decodedData = json_decode($rawData, true);
+
+$baseUrl = 'https://api.proboprints.com';
+$token = 'yourtoken';
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, sprintf('%s%s', $baseUrl, $decodedData['url']));
+curl_setopt($curl, CURLOPT_HTTPHEADER, [
+    'Accept: application/json',
+    'Content-Type: application/json',
+    'Authorization: Basic ' . $token
+]);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($decodedData['data']));
+
+$resp = curl_exec($curl);
+curl_close($curl);
+
+echo $resp;
+
+```
+
+### Initializing first steps
+
+1. Set client API client with the link to the proxy.
+
+```javaScript
+const configurator = new ProboClient({ proxy: '/api' })
+```
+
+2. Set a product with the product code via the client. This will fetch the first step(s) for this product.
+
+```javaScript
+configurator.setProduct('banner-510');
 ```
 
 ## License
