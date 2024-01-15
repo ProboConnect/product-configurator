@@ -69,10 +69,10 @@ echo $resp;
 
 ### Initializing first steps
 
-1. Set client API client with the link to the proxy.
+1. Set API client with a link to the proxy.
 
 ```javaScript
-const configurator = new ProboClient({ proxy: '/api' })
+const configurator = new ProboClient({ proxy: '/api' });
 ```
 
 2. Set a product with the product code via the client. This will fetch the first step(s) for this product.
@@ -80,6 +80,103 @@ const configurator = new ProboClient({ proxy: '/api' })
 ```javaScript
 configurator.setProduct('banner-510');
 ```
+
+3. If needed set the priceType and address before setting the product
+
+```javaScript
+configurator.setPriceType('sales_price', false).setAddress(address).setProduct('banner-510');
+```
+
+### Setting and getting options
+
+1. Add an eventlistener for the model value of the component.
+
+2. Set the option returned from the listener and get the next option
+
+```javascript
+configurator.setOption(newValue).getNextOption()
+```
+
+#### By payload
+
+The configurator can be setup with an existing payload as follows:
+
+```javascript
+configurator.setFromPayload(payload)
+```
+
+The Payload can either be just a product:
+
+```json
+{
+    "products": [
+        {
+            "code": "banner-510",
+            "options": [
+                {
+                    "code": "width",
+                    "value": 2000
+                },
+                {
+                    "code": "height",
+                    "value": 2000
+                },
+                                {
+                    "code": "amount",
+                    "value": 4
+                },
+                ...
+            ]
+        }
+    ]
+}
+```
+
+Or also contain the address, so the deliveries get fetched as well:
+
+```json
+{
+    "deliveries": [
+        {
+            "address": {
+                "companyName": "Probo",
+                "firstName": "John",
+                "lastName": "Doe",
+                "street": "Fortuinweg",
+                "houseNumber": "17",
+                "postalCode": "9101 PE",
+                "city": "Dokkum",
+                "country": "NL",
+                "email": "printprofessionals@probo.nl"
+            },
+        }
+    ],
+    "products": [
+        {
+            "code": "banner-510",
+            "options": [
+                {
+                    "code": "width",
+                    "value": 2000
+                },
+                {
+                    "code": "height",
+                    "value": 2000
+                },
+                {
+                    "code": "amount",
+                    "value": 4
+                },
+                ...
+            ]
+        }
+    ]
+}
+```
+
+### Clearing the config
+
+By calling `configurator.clear()` all options are reset and the component should return to it's initial state.
 
 ## License
 
