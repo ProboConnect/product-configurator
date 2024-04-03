@@ -1,9 +1,5 @@
 # Probo Product Configurator
 
-Version 0.0.0
-
-## Overview
-
 The Probo Product Configurator is a web component for customizing [probo.nl](https://probo.nl) print products. This configurator empowers users to personalize various print items so they can be ordered as the user pleases.
 
 ## Features
@@ -27,8 +23,20 @@ git clone https://github.com/ProboConnect/product-configurator.git
 And include the web component:
 
 ```html
-<script src="probo-product-configurator.js" rel="text/javascript"></script>
+<script type="module" src="probo-product-configurator.js" rel="text/javascript"></script>
 ```
+
+Or use the script on CDN:
+
+```javascript
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@0.1.1/probo-product-configurator.js"
+  rel="text/javascript"
+></script>
+```
+
+And include the component in your product
 
 ```html
 <probo-product-configurator></probo-product-configurator>
@@ -48,61 +56,127 @@ $rawData = file_get_contents('php://input');
 $decodedData = json_decode($rawData, true);
 
 $baseUrl = 'https://api.proboprints.com';
-$token = 'yourtoken';
+$token = 'YOURAPITOKEN';
 
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, sprintf('%s%s', $baseUrl, $decodedData['url']));
+
 curl_setopt($curl, CURLOPT_HTTPHEADER, [
     'Accept: application/json',
     'Content-Type: application/json',
     'Authorization: Basic ' . $token
 ]);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($decodedData['data']));
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    curl_setopt($curl, CURLOPT_URL, sprintf('%s%s', $baseUrl, $decodedData['url']));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($decodedData['data']));
+} else {
+    curl_setopt($curl, CURLOPT_URL, sprintf('%s%s', $baseUrl, $_GET['url']));
+}
 
 $resp = curl_exec($curl);
 curl_close($curl);
 
 echo $resp;
-
 ```
 
 ### Initializing first steps
 
-1. Set API client with a link to the proxy.
+1. Call the `init` function on the proboConfigurator client and provide the proxy url.
 
 ```javaScript
-const configurator = new ProboClient({ proxy: '/api' });
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+    })
+});
 ```
 
-2. Set a product with the product code via the client. This will fetch the first step(s) for this product.
+If you need deliveries you need to add an address as well.
 
 ```javaScript
-configurator.setProduct('banner-510');
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+        address: {
+        companyName: 'Probo',
+        firstName: 'John',
+        lastName: 'Doe',
+        street: 'Keizersgracht',
+        houseNumber: '123',
+        postalCode: '1015 CJ',
+        city: 'Amsterdam',
+        country: 'NL',
+        email: 'probo@probo.nl',
+        },
+    })
+});
 ```
 
-3. If needed set the priceType and address before setting the product
+2. Call the `openSearch` function to open the search modal. Either chained with the `init` function:
 
 ```javaScript
-configurator.setPriceType('sales_price', false).setAddress(address).setProduct('banner-510');
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+    })
+}).openSearch();
 ```
 
-### Setting and getting options
-
-1. Add an eventlistener for the model value of the component.
-
-2. Set the option returned from the listener and get the next option
+Or after:
 
 ```javascript
-configurator.setOption(newValue).getNextOption()
+window.proboConfigurator.openSearch()
 ```
 
-#### By payload
+### Language
+
+The default language of the configurator is Dutch. If another is needed, for example English, either add it in the `init` function:
+
+```javascript
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+        language: 'en',
+    })
+});
+```
+
+or with the `setLanguage` function.
+
+```javascript
+window.proboConfigurator.setLanguage('en')
+```
+
+The available languages are Dutch, English and German.
+
+### Price types
+
+If another price type is needed or you want to add VAT set it via the init function:
+
+```javascript
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+        priceType: 'sales_price',
+    })
+});
+```
+
+or with the `setPriceType` function.
+
+```javascript
+window.proboConfigurator.setPriceType('sales_price', true)
+```
+
+The default is `purchase_price`, excluding VAT.
+
+### Configuring by payload
 
 The configurator can be setup with an existing payload as follows:
 
 ```javascript
-configurator.setFromPayload(payload)
+window.proboConfigurator.setFromPayload(payload)
 ```
 
 The Payload can either be just a product:
@@ -184,4 +258,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-© 2023 Probo.nl.
+2023 Probo.nl.
