@@ -248,6 +248,58 @@ Or also contain the address, so the deliveries get fetched as well:
 }
 ```
 
+### Finishing configuration
+
+When the configuration is finished the `proboConfigurator:finished` event is dispatched.
+
+### Getting results
+
+When the configuration is finished you call the `window.proboConfigurator.getResults()` to get the configuration and excerpt of the product.
+
+Simple example output:
+
+```
+{
+  "excerpt": {
+    "product": {
+      "description": "5x banner-510 234x234",
+      "description_options": "width: 234, height: 234, amount: 5, finishing-all-sides, cut, customer-supplied-file"
+    }
+  },
+  "configuration": {
+    "products": [
+      {
+        "code": "banner-510",
+        "options": [
+          {
+            "code": "width",
+            "value": 234
+          },
+          {
+            "code": "height",
+            "value": 234
+          },
+          {
+            "value": 5,
+            "code": "amount"
+          },
+          {
+            "code": "finishing-all-sides"
+          },
+          {
+            "code": "cut"
+          },
+          {
+            "code": "customer-supplied-file"
+          }
+        ]
+      }
+    ],
+    "language": "en"
+  }
+}
+```
+
 ### Clearing the config
 
 By calling `configurator.clear()` all options are reset and the component should return to it's initial state.
@@ -258,4 +310,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-2023 Probo.nl.
+2024 Probo.nl.
