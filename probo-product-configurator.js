@@ -6593,8 +6593,8 @@ const jC = (A) => A && typeof A == "object" && !Array.isArray(A), ME = (A, ...B)
       cheapest: "Cheapest",
       tomorrow: "Tomorrow",
       errors: {
-        invalidOrDuplicate: "Invalid or duplicate option, adjust your payload and try again",
-        restrictionsNotMet: "Restrictions were not met for one or more order lines",
+        invalid_or_duplicate: "Invalid or duplicate option, adjust your payload and try again",
+        restrictions_not_met: "Restrictions were not met for one or more order lines",
         invalid: "One or more values are invalid"
       }
     },
@@ -6605,8 +6605,8 @@ const jC = (A) => A && typeof A == "object" && !Array.isArray(A), ME = (A, ...B)
       cheapest: "Voordeligst",
       tomorrow: "Morgen",
       errors: {
-        invalidOrDuplicate: "Ongeldige of dubbele optie, pas de payload aan en probeer opnieuw",
-        restrictionsNotMet: "Er is niet voldaan aan de beperkingen voor een of meer orderregels",
+        invalid_or_duplicate: "Ongeldige of dubbele optie, pas de payload aan en probeer opnieuw",
+        restrictions_not_met: "Er is niet voldaan aan de beperkingen voor een of meer orderregels",
         invalid: "Een of meer waarden zijn ongeldig"
       }
     },
@@ -6617,8 +6617,8 @@ const jC = (A) => A && typeof A == "object" && !Array.isArray(A), ME = (A, ...B)
       cheapest: "Am billigsten",
       tomorrow: "Morgen",
       errors: {
-        invalidOrDuplicate: "Ungültige oder doppelte Option. Passen Sie Ihre Nutzlast an und versuchen Sie es erneut",
-        restrictionsNotMet: "Einschränkungen wurden für eine oder mehrere Bestellpositionen nicht erfüllt",
+        invalid_or_duplicate: "Ungültige oder doppelte Option. Passen Sie Ihre Nutzlast an und versuchen Sie es erneut",
+        restrictions_not_met: "Einschränkungen wurden für eine oder mehrere Bestellpositionen nicht erfüllt",
         invalid: "Ein oder mehrere Werte sind ungültig"
       }
     }
@@ -22847,6 +22847,7 @@ class h0 extends lU {
    * @return {Promise<array>} The response from the API.
    */
   async configureProduct(B) {
+    var C;
     const g = {
       body: JSON.stringify({
         url: `${this.apiVersion || ""}/products/configure`,
@@ -22855,7 +22856,7 @@ class h0 extends lU {
         }
       })
     }, Q = await this.fetchData(g, this.proxy);
-    return Q.products && Q.products.length > 0 ? Q.products[0] : Q;
+    return ((C = Q.products) == null ? void 0 : C.length) > 0 ? Q.products[0] : Q;
   }
   /**
    * Retrieves the price using the specified configuration options.
@@ -23063,7 +23064,7 @@ function OU(A, B) {
   };
 }
 function zU(A) {
-  return A.includes("Can not find unique id for option") ? kB.global.t("errors.invalidOrDuplicate") : A.includes("Restrictions are not met") ? kB.global.t("errors.restrictionsNotMet") : A === "Validation Failed" ? kB.global.t("errors.invalid") : A;
+  return A.includes("Can not find unique id for option") ? kB.global.t("errors.invalid_or_duplicate") : A.includes("Restrictions are not met") ? kB.global.t("errors.restrictions_not_met") : A === "Validation Failed" ? kB.global.t("errors.invalid") : A;
 }
 class jU {
   constructor({ proxy: B, version: g }) {
