@@ -31,12 +31,23 @@ Or use the script on CDN:
 ```javascript
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@0.1.1/probo-product-configurator.js"
+  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@0.5.0/probo-product-configurator.js"
   rel="text/javascript"
 ></script>
 ```
 
-And include the component in your product
+#### Variants
+There are two ways to use the configurator.
+
+With product search and in a modal:
+
+```html
+<probo-modal>
+    <probo-product-configurator></probo-product-configurator>
+<probo-modal>
+```
+
+Without modal:
 
 ```html
 <probo-product-configurator></probo-product-configurator>
@@ -113,7 +124,7 @@ await window.proboConfigurator
 });
 ```
 
-2. Call the `openSearch` function to open the search modal. Either chained with the `init` function:
+2. When using the search functionality call the `openSearch` function to open the search modal. Either chained with the `init` function:
 
 ```javaScript
 await window.proboConfigurator
@@ -128,6 +139,18 @@ Or after:
 ```javascript
 window.proboConfigurator.openSearch()
 ```
+
+3. Or when using the configurator without search set the product with the `setProduct` function and API code:
+
+```javascript
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+    })
+}).setProduct('banner-510');
+```
+
+And the get the first option call the `getNextOption()` function.
 
 ### Language
 
@@ -250,7 +273,7 @@ Or also contain the address, so the deliveries get fetched as well:
 
 ### Finishing configuration
 
-When the configuration is finished the `proboConfigurator:finished` event is dispatched.
+When a configuration is orderable the `proboConfigurator:finished` event is dispatched on the window.
 
 ### Getting results
 
