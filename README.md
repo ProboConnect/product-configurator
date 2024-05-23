@@ -93,7 +93,7 @@ echo $resp;
 
 ### Initializing first steps
 
-1. Call the `init` function on the proboConfigurator client and provide the proxy url.
+1. Call either the `init` function on the proboConfigurator client and provide the proxy url.
 
 ```javaScript
 await window.proboConfigurator
@@ -103,22 +103,30 @@ await window.proboConfigurator
 });
 ```
 
-If you need deliveries you need to add an address as well.
+Or add the props to the component and it will call the init function within.
+```javaScript
+  <probo-product-configurator
+    proxy="/api"
+    product-code="banner-510"
+  />
+```
+
+If you need deliveries you need to add an address as well. Due to web component limitations this cannot be done by prop.
 
 ```javaScript
 await window.proboConfigurator
     .init({
         proxy: '/api',
         address: {
-        companyName: 'Probo',
-        firstName: 'John',
-        lastName: 'Doe',
-        street: 'Keizersgracht',
-        houseNumber: '123',
-        postalCode: '1015 CJ',
-        city: 'Amsterdam',
-        country: 'NL',
-        email: 'probo@probo.nl',
+            companyName: 'Probo',
+            firstName: 'John',
+            lastName: 'Doe',
+            street: 'Fortuinweg',
+            houseNumber: '17',
+            postalCode: '9101 PE',
+            city: 'Dokkum',
+            country: 'NL',
+            email: 'probo@probo.nl',
         },
     })
 });
@@ -140,7 +148,7 @@ Or after:
 window.proboConfigurator.openSearch()
 ```
 
-3. Or when using the configurator without search set the product with the `setProduct` function and API code:
+3. Or when using the configurator without search (or product-code prop) set the product with the `setProduct` function and API code:
 
 ```javascript
 await window.proboConfigurator
@@ -169,6 +177,15 @@ or with the `setLanguage` function.
 
 ```javascript
 window.proboConfigurator.setLanguage('en')
+```
+
+Or as prop
+
+```javaScript
+  <probo-product-configurator
+    ...
+    language="en"
+  />
 ```
 
 The available languages are Dutch, English and German.
