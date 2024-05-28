@@ -158,7 +158,7 @@ await window.proboConfigurator
 }).setProduct('banner-510');
 ```
 
-And the get the first option call the `getNextOption()` function.
+And to get the first option call the `getNextOption()` function.
 
 ### Language
 
