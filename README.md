@@ -31,7 +31,7 @@ Or use the script on CDN:
 ```javascript
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@0.5.0/probo-product-configurator.js"
+  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v1.0.3/probo-product-configurator.js"
   rel="text/javascript"
 ></script>
 ```
@@ -42,12 +42,10 @@ There are two ways to use the configurator.
 With product search and in a modal:
 
 ```html
-<probo-modal>
-    <probo-product-configurator></probo-product-configurator>
-<probo-modal>
+<probo-product-configurator modal></probo-product-configurator>
 ```
 
-Without modal:
+Just the configurator:
 
 ```html
 <probo-product-configurator></probo-product-configurator>
