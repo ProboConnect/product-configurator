@@ -1,6 +1,6 @@
 {
   "name": "probo-product-configurator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The Probo Product Configurator is a web component for customizing probo print products.",
   "main": "probo-product-configurator.js",
   "repository": {
