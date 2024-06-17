@@ -1,0 +1,20 @@
+{
+  "name": "probo-product-configurator",
+  "version": "1.0.3",
+  "description": "The Probo Product Configurator is a web component for customizing probo print products.",
+  "main": "probo-product-configurator.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProboConnect/product-configurator.git"
+  },
+  "keywords": [
+    "probo",
+    "print",
+    "configuration"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProboConnect/product-configurator/issues"
+  },
+  "homepage": "https://github.com/ProboConnect/product-configurator#readme"
+}
