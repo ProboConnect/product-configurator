@@ -128,6 +128,21 @@ await window.proboConfigurator
         },
     })
 });
+
+```
+Or set it with it's method: 
+```
+window.proboConfigurator.setAddress({
+    companyName: 'Probo',
+    firstName: 'John',
+    lastName: 'Doe',
+    street: 'Fortuinweg',
+    houseNumber: '17',
+    postalCode: '9101 PE',
+    city: 'Dokkum',
+    country: 'NL',
+    email: 'probo@probo.nl',
+})
 ```
 
 2. When using the search functionality call the `openSearch` function to open the search modal. Either chained with the `init` function:
