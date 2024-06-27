@@ -32618,10 +32618,10 @@ const o3 = {
       no_accessoires: "No accessories",
       complete: "Complete",
       errors: {
-        invalid_or_duplicate: "Invalid or duplicate option, adjust your payload and try again",
+        invalid_or_duplicate: "Invalid or duplicate option, adjust your configuration and try again",
         restrictions_not_met: "Restrictions were not met for one or more order lines",
         invalid: "One or more values are invalid",
-        invalidConfig: "Configuration contains an invalid option, adjust your payload and try again",
+        invalidConfig: "Configuration contains an invalid option, adjust your configuration and try again",
         general: "Something went wrong, check the configuration and try again"
       },
       global: {
@@ -32638,10 +32638,10 @@ const o3 = {
       no_accessoires: "Geen accessoires",
       complete: "Afronden",
       errors: {
-        invalid_or_duplicate: "Ongeldige of dubbele optie, pas de payload aan en probeer opnieuw",
+        invalid_or_duplicate: "Ongeldige of dubbele optie, pas de samenstelling aan en probeer opnieuw",
         restrictions_not_met: "Er is niet voldaan aan de beperkingen voor een of meer orderregels",
         invalid: "Een of meer waarden zijn ongeldig",
-        invalidConfig: "Configuratie bevat een ongeldige optie, pas de payload aan en probeer opnieuw",
+        invalidConfig: "Configuratie bevat een ongeldige optie, pas de samenstelling aan en probeer opnieuw",
         general: "Er is iets misgegaan, controleer de samenstelling en probeer opnieuw"
       },
       global: {
@@ -32658,10 +32658,10 @@ const o3 = {
       no_accessoires: "Keine Zubehör",
       complete: "Vollständigen",
       errors: {
-        invalid_or_duplicate: "Ungültige oder doppelte Option. Passen Sie Ihre Nutzlast an und versuchen Sie es erneut",
+        invalid_or_duplicate: "Ungültige oder doppelte Option. Passen Sie Ihre Konfiguration an und versuchen Sie es erneut",
         restrictions_not_met: "Einschränkungen wurden für eine oder mehrere Bestellpositionen nicht erfüllt",
         invalid: "Ein oder mehrere Werte sind ungültig",
-        invalidConfig: "Konfiguration enthaelt eine ungültige Option. Passen Sie Ihre Nutzlast an und versuchen Sie es erneut",
+        invalidConfig: "Konfiguration enthaelt eine ungültige Option. Passen Sie Ihre Konfiguration an und versuchen Sie es erneut",
         general: "Es ist ein Fehler aufgetreten. Ueberprüfen Sie die Konfiguration und versuchen Sie es erneut"
       },
       global: {
@@ -33222,7 +33222,7 @@ class H_ extends z_ {
           a.options[a.options.length - 1].alert || (a.alert = {
             type: "error",
             title: d3(h.message ? h.message : h)
-          }), a.loading = !1;
+          }), a.loading = !1, a.updateExternal = !0;
           return;
         }
         if (n[d]) {
