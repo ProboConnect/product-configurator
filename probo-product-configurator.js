@@ -32978,31 +32978,32 @@ class z_ {
    * @return {Promise<void>} - Resolves when the next option has been retrieved.
    */
   async getNextOption() {
-    var t;
+    var t, r;
     if (V_(this.options, this.product.options)) {
       this.loading = !0, this.productConfig.language || (this.productConfig.language = this.language);
-      let r = {};
+      let n = {};
       try {
-        r = await this.repository.configureProduct(this.productConfig);
-      } catch (n) {
-        r = n;
+        n = await this.repository.configureProduct(this.productConfig);
+      } catch (o) {
+        n = o;
       }
-      if (r.status || r.message || typeof r != "object")
+      if (n.status || n.message || typeof n != "object")
         throw this.options[this.options.length - 1].status = "attention", this.options[this.options.length - 1].alert = {
           type: "error",
-          title: d3(r.message ? r.message : r)
-        }, this.loading = !1, new Error(r.message || r);
-      if (typeof r == "object" && r && !r.status) {
-        let n = r.available_options;
-        if (((t = n[0]) == null ? void 0 : t.code) === "size" && n.length === 2 && (n = n.slice(0, 1)), this.options = P_(this.options, n, this.lastChangedIndex, this.priceType), this.setOpenState(), this.setStatuses(), r.can_order) {
+          title: d3(n.message ? n.message : n)
+        }, this.loading = !1, new Error(n.message || n);
+      if (typeof n == "object" && n && !n.status) {
+        this.alert = {}, (t = this.options[this.options.length - 1]) != null && t.alert && delete this.options[this.options.length - 1].alert;
+        let o = n.available_options;
+        if (((r = o[0]) == null ? void 0 : r.code) === "size" && o.length === 2 && (o = o.slice(0, 1)), this.options = P_(this.options, o, this.lastChangedIndex, this.priceType), this.setOpenState(), this.setStatuses(), n.can_order) {
           this.canOrder = !0;
-          const o = new Event("proboConfigurator:finished");
-          window.dispatchEvent(o);
+          const a = new Event("proboConfigurator:finished");
+          window.dispatchEvent(a);
         } else
-          r.can_order === !1 && this.canOrder && (this.canOrder = !1);
-        if (r.can_order && this.product.options.length >= this.options.length && Object.keys(this.address).length && this.address.city) {
-          const o = await this.getProductPrice();
-          this.prices = D_(o, this.priceType), this.deliveryOptions = R_(o, this.language), this.setOpenState();
+          n.can_order === !1 && this.canOrder && (this.canOrder = !1);
+        if (n.can_order && this.product.options.length >= this.options.length && Object.keys(this.address).length && this.address.city) {
+          const a = await this.getProductPrice();
+          this.prices = D_(a, this.priceType), this.deliveryOptions = R_(a, this.language), this.setOpenState();
         }
       }
       this.loading = !1;
