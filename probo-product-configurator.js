@@ -32622,7 +32622,7 @@ const o3 = {
         restrictions_not_met: "Restrictions were not met for one or more order lines",
         invalid: "One or more values are invalid",
         invalidConfig: "Configuration contains an invalid option, adjust your payload and try again",
-        general: "Something went wrong, check your payload and try again"
+        general: "Something went wrong, check the configuration and try again"
       },
       global: {
         // should be adjusted in PDS
@@ -32642,7 +32642,7 @@ const o3 = {
         restrictions_not_met: "Er is niet voldaan aan de beperkingen voor een of meer orderregels",
         invalid: "Een of meer waarden zijn ongeldig",
         invalidConfig: "Configuratie bevat een ongeldige optie, pas de payload aan en probeer opnieuw",
-        general: "Er is iets misgegaan, check de payload en probeer opnieuw"
+        general: "Er is iets misgegaan, controleer de samenstelling en probeer opnieuw"
       },
       global: {
         // should be adjusted in PDS
@@ -32662,7 +32662,7 @@ const o3 = {
         restrictions_not_met: "Einschränkungen wurden für eine oder mehrere Bestellpositionen nicht erfüllt",
         invalid: "Ein oder mehrere Werte sind ungültig",
         invalidConfig: "Konfiguration enthaelt eine ungültige Option. Passen Sie Ihre Nutzlast an und versuchen Sie es erneut",
-        general: "Es ist ein Fehler aufgetreten. Ueberprüfen Sie Ihre Nutzlast und versuchen Sie es erneut"
+        general: "Es ist ein Fehler aufgetreten. Ueberprüfen Sie die Konfiguration und versuchen Sie es erneut"
       },
       global: {
         // should be adjusted in PDS
@@ -32838,8 +32838,8 @@ function Z_(e, t, r) {
   r === "accessories-cross-sell" ? n = "unit" : (r === "material" || r === "materialType") && (n = "meter");
   const o = e.map((a) => {
     let i;
-    return a.type_code === "number" && (i = {
-      value: a.default_value,
+    return (a.type_code === "number" || a.type_code === "decimal") && (i = {
+      value: a.default_value || parseFloat(a.min_value),
       unit: a.unit_code,
       min: a.min_value,
       max: a.max_value,
