@@ -359,6 +359,10 @@ Use `proboConfigurator.needsUpload()` to determine if an upload is needed.
 
 And `proboConfigurator.getUploaderData()` to get the uploader data.
 
+### Getting the raw payload
+
+`proboConfigurator.getRaw()` returns the whole unmapped API payload;
+
 ### Clearing the config
 
 By calling `proboConfigurator.clear()` all options are reset and the component should return to it's initial state.
