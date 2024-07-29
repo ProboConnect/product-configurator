@@ -353,9 +353,15 @@ Simple example output:
 }
 ```
 
+### Getting the upload data
+ 
+Use `proboConfigurator.needsUpload()` to determine if an upload is needed.
+
+And `proboConfigurator.getUploaderData()` to get the uploader data.
+
 ### Clearing the config
 
-By calling `configurator.clear()` all options are reset and the component should return to it's initial state.
+By calling `proboConfigurator.clear()` all options are reset and the component should return to it's initial state.
 
 ## License
 
