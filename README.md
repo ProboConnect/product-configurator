@@ -307,7 +307,7 @@ When a configuration is orderable the `proboConfigurator:finished` event is disp
 
 ### Getting results
 
-When the configuration is finished you call the `window.proboConfigurator.getResults()` to get the configuration and excerpt of the product.
+When the configuration is finished you call the `window.proboConfigurator.getResult()` to get the configuration and excerpt of the product.
 
 Simple example output:
 
