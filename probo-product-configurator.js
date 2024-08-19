@@ -32689,7 +32689,10 @@ class T_ {
     t.method === "GET" && (o = JSON.parse(t.body).url, delete t.body);
     const a = {
       method: "POST",
-      ...t
+      ...t,
+      headers: {
+        "Content-Type": "application/json"
+      }
     };
     try {
       t.method === "GET" ? n = await fetch(`${r}?url=${o}`, a) : n = await fetch(r, a);
@@ -32711,7 +32714,6 @@ class i3 extends T_ {
    * @return {Promise<array>} The response from the API.
    */
   async configureProduct(t) {
-    var o;
     const r = {
       body: JSON.stringify({
         url: `${this.apiVersion || ""}/products/configure`,
@@ -32723,10 +32725,10 @@ class i3 extends T_ {
     let n = {};
     try {
       n = await this.fetchData(r, this.proxy);
-    } catch (a) {
-      throw new Error(a);
+    } catch (o) {
+      throw new Error(o);
     }
-    return ((o = n.products) == null ? void 0 : o.length) > 0 ? n.products[0] : n;
+    return n;
   }
   /**
    * Retrieves the price using the specified configuration options.
@@ -32934,7 +32936,7 @@ function d3(e) {
 }
 class z_ {
   constructor({ proxy: t, version: r }) {
-    this.proxy = t, this.version = r || "", this.repository = new i3({ proxy: t }), this.product = new r2({}), this.productConfig = new n2({}), this.address = new _1({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {};
+    this.proxy = t, this.version = r || "", this.repository = new i3({ proxy: t }), this.product = new r2({}), this.productConfig = new n2({}), this.address = new _1({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {}, this.upload = !1, this.uploaders = [], this.payload = {};
   }
   /**
    * Set the code of the product and get the first step for the product.
@@ -32983,20 +32985,20 @@ class z_ {
       this.loading = !0, this.productConfig.language || (this.productConfig.language = this.language);
       let n = {};
       try {
-        n = await this.repository.configureProduct(this.productConfig);
+        this.payload = await this.repository.configureProduct(this.productConfig);
       } catch (o) {
-        n = o;
+        this.payload = o;
       }
-      if (n.status || n.message || typeof n != "object")
+      if (this.payload.status !== "ok" || typeof this.payload == "string")
         throw this.options[this.options.length - 1].status = "attention", this.options[this.options.length - 1].alert = {
           type: "error",
-          title: d3(n.message ? n.message : n)
-        }, this.loading = !1, new Error(n.message || n);
-      if (typeof n == "object" && n && !n.status) {
+          title: d3(this.payload.message ? this.payload.message : this.payload)
+        }, this.loading = !1, new Error(this.payload.message || this.payload);
+      if ([n] = this.payload.products, typeof n == "object" && n) {
         this.alert = {}, (t = this.options[this.options.length - 1]) != null && t.alert && delete this.options[this.options.length - 1].alert;
         let o = n.available_options;
         if (((r = o[0]) == null ? void 0 : r.code) === "size" && o.length === 2 && (o = o.slice(0, 1)), this.options = P_(this.options, o, this.lastChangedIndex, this.priceType), this.setOpenState(), this.setStatuses(), n.can_order) {
-          this.canOrder = !0;
+          this.canOrder = !0, n.upload === !0 && (this.upload = !0, this.uploaders = n.uploaders);
           const a = new Event("proboConfigurator:finished");
           window.dispatchEvent(a);
         } else
@@ -33076,7 +33078,7 @@ class z_ {
     });
   }
   /**
-   * Retrieves the configuration of the product mapped for the configurator.
+   * Retrieves the configuration of the product mapped for the configurator. (internal use)
    *
    * @return {Object} The configuration of the product.
    */
@@ -33099,6 +33101,21 @@ class z_ {
       t.options = o;
     }
     return t;
+  }
+  /**
+   * Retrieves the uploader data needed for the configuration.
+   * @return {Array} The uploader data needed for the configuration.
+   */
+  getUploaderData() {
+    return JSON.parse(JSON.stringify(this.uploaders));
+  }
+  /** Is there an upload needed */
+  needsUpload() {
+    return this.upload;
+  }
+  /** Get the raw, unmapped configuration payload */
+  getRaw() {
+    return JSON.parse(JSON.stringify(this.payload));
   }
   /**
    * Clear all the variables and reset the state of the object.
