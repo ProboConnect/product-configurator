@@ -1,19 +1,27 @@
 # Probo Product Configurator
 
-The Probo Product Configurator is a web component for customizing [probo.nl](https://probo.nl) print products. This configurator empowers users to personalize various print items so they can be ordered as the user pleases.
+The Probo Product Configurator is a  graphical interface that allows your customers to effortlessly customize Probo Products within your application.
+The configurator is a wrapper for the /products/configure endpoint of the [Probo API](https://apidocs.proboprints.com/)
 
 ## Features
 
-- **Dynamic Customization**: Users can dynamically customize their print products by selecting different options, including materials, sizes, quantities, etc.
+- **Dynamic Customization**: Users can customize their print products by selecting different options, including materials, sizes, quantities, etc.
 
 - **Responsive Design**: The application is built with a responsive design to ensure a seamless experience across different devices and screen sizes.
 
 - **Easy Integration**: Probo Product Configurator can be easily integrated into existing websites and e-commerce platforms as a web component, providing a consistent user experience.
 
+## About Probo
+Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux. We collaborate exclusively with resellers who add value to print, such as advice, design, and installation. Find out more on www.probo.nl / www.probo.de / www.probo.eu
+
 ## Getting Started
+Before you get started you need to have an API token for the ProboAPI. You can request this on your Probo platform.
+Due to security, you need a proxy to make the calls to Probo, from your front-end to the Probo API. We will cover this in the installation section.
 
 ### Installation
 
+#### Installing the component
+##### Via GIT 
 Clone the repository:
 
 ```bash
@@ -26,29 +34,13 @@ And include the web component:
 <script type="module" src="probo-product-configurator.js" rel="text/javascript"></script>
 ```
 
-Or use the script on CDN:
-
+##### Via CDN 
 ```javascript
 <script
   type="module"
   src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v1.0.3/probo-product-configurator.js"
   rel="text/javascript"
 ></script>
-```
-
-#### Variants
-There are two ways to use the configurator.
-
-With product search and in a modal:
-
-```html
-<probo-product-configurator modal></probo-product-configurator>
-```
-
-Just the configurator:
-
-```html
-<probo-product-configurator></probo-product-configurator>
 ```
 
 ### Proxy
@@ -91,7 +83,24 @@ echo $resp;
 
 ### Initializing first steps
 
-1. Call either the `init` function on the proboConfigurator client and provide the proxy url.
+
+#### Choose the variant
+There are two ways to use the configurator.
+
+With product search and in a modal:
+
+```html
+<probo-product-configurator modal></probo-product-configurator>
+```
+
+Just the configurator:
+
+```html
+<probo-product-configurator></probo-product-configurator>
+```
+
+#### Initialization
+1. Call either the `init` function on the proboConfigurator client and provide the proxy URL.
 
 ```javaScript
 await window.proboConfigurator
@@ -109,7 +118,7 @@ Or add the props to the component and it will call the init function within.
   />
 ```
 
-If you need deliveries you need to add an address as well. Due to web component limitations this cannot be done by prop.
+If you need deliveries you need to add an address as well. Due to web component limitations, this cannot be done by prop.
 
 ```javaScript
 await window.proboConfigurator
@@ -201,7 +210,7 @@ Or as prop
   />
 ```
 
-The available languages are Dutch, English and German.
+The available languages are Dutch (nl), English (en) and German(de).
 
 ### Price types
 
@@ -226,7 +235,7 @@ The default is `purchase_price`, excluding VAT.
 
 ### Configuring by payload
 
-The configurator can be setup with an existing payload as follows:
+The configurator can be set with an existing payload as follows:
 
 ```javascript
 window.proboConfigurator.setFromPayload(payload)
@@ -259,7 +268,7 @@ The Payload can either be just a product:
 }
 ```
 
-Or also contain the address, so the deliveries get fetched as well:
+Or also contains the address, so the deliveries get fetched as well:
 
 ```json
 {
@@ -365,7 +374,7 @@ And `proboConfigurator.getUploaderData()` to get the uploader data.
 
 ### Clearing the config
 
-By calling `proboConfigurator.clear()` all options are reset and the component should return to it's initial state.
+By calling `proboConfigurator.clear()` all options are reset and the component should return to its initial state.
 
 ## License
 
@@ -373,4 +382,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-2024 Probo.nl.
+2024 Probo.
