@@ -20,8 +20,8 @@ Probo is one of the largest Printing on Demand suppliers in Western Europe and a
 ## Getting Started
 Before you get started you need to have an Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
 
-### Register of an account
-- [Probo Netherlands API token](www.probo.nl)
+### Register an account
+- [Probo Nederland](www.probo.nl)
 - [Probo Deutschland](www.probo.de)
 - [Probo International](www.probo.eu)
 
