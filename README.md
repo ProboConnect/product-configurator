@@ -13,22 +13,22 @@ The configurator is a wrapper for the /products/configure endpoint of the [Probo
 
 ## About Probo
 Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux.
-- [Probo Nederland](www.probo.nl)
-- [Probo Deutschland](www.probo.de)
-- [Probo International](www.probo.eu)
+- [Probo Nederland](https://www.probo.nl)
+- [Probo Deutschland](https://www.probo.de)
+- [Probo International](https://www.probo.eu)
 
 ## Getting Started
 Before you get started you need to have an Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
 
 ### Register an account
-- [Probo Nederland](www.probo.nl)
-- [Probo Deutschland](www.probo.de)
-- [Probo International](www.probo.eu)
+- [Probo Nederland](https://www.probo.nl)
+- [Probo Deutschland](https://www.probo.de)
+- [Probo International](https://www.probo.eu)
 
 ### Request a token
-- [Probo Nederland API instellingen](www.probo.nl/myaccount/apiconnect/index)
-- [Probo Deutschland API Einstellungen](www.probo.de/myaccount/apiconnect/index)
-- [Probo International API settings](www.probo.eu/myaccount/apiconnect/index)
+- [Probo Nederland API instellingen](https://www.probo.nl/myaccount/apiconnect/index)
+- [Probo Deutschland API Einstellungen](https://www.probo.de/myaccount/apiconnect/index)
+- [Probo International API settings](https://www.probo.eu/myaccount/apiconnect/index)
 
 ## Installation
 
