@@ -59,7 +59,7 @@ And include the web component:
 Due to security, you need a proxy to make the calls to Probo, from your front-end to the Probo API.  Some examples are added.
 The proxy calls the Probo API `https://api.proboprints.com` and needs to accept the endpoints from the request `body.url`. See below for an example.
 
-#### PHP
+#### PHP example
 
 ```php
 <?php
