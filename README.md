@@ -1,6 +1,6 @@
 # Probo Product Configurator
 
-The Probo Product Configurator is a  graphical interface that allows your customers to effortlessly customize Probo Products within your application.
+The Probo Product Configurator is a webcomponent that allows your customers to effortlessly customize Probo Products within your application.
 The configurator is a wrapper for the /products/configure endpoint of the [Probo API](https://apidocs.proboprints.com/)
 
 ## Features
@@ -12,16 +12,28 @@ The configurator is a wrapper for the /products/configure endpoint of the [Probo
 - **Easy Integration**: Probo Product Configurator can be easily integrated into existing websites and e-commerce platforms as a web component, providing a consistent user experience.
 
 ## About Probo
-Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux. We collaborate exclusively with resellers who add value to print, such as advice, design, and installation. Find out more on www.probo.nl / www.probo.de / www.probo.eu
+Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux.
+- [Probo Nederland](www.probo.nl)
+- [Probo Deutschland](www.probo.de)
+- [Probo International](www.probo.eu)
 
 ## Getting Started
-Before you get started you need to have an API token for the ProboAPI. You can request this on your Probo platform.
-Due to security, you need a proxy to make the calls to Probo, from your front-end to the Probo API. We will cover this in the installation section.
+Before you get started you need to have an Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
 
-### Installation
+### Register of an account
+- [Probo Netherlands API token](www.probo.nl)
+- [Probo Deutschland](www.probo.de)
+- [Probo International](www.probo.eu)
 
-#### Installing the component
-##### Via GIT 
+### Request a token
+- [Probo Nederland API instellingen](www.probo.nl/myaccount/apiconnect/index)
+- [Probo Deutschland API Einstellungen](www.probo.de/myaccount/apiconnect/index)
+- [Probo International API settings](www.probo.eu/myaccount/apiconnect/index)
+
+## Installation
+
+### Installing the component
+#### Via GIT 
 Clone the repository:
 
 ```bash
@@ -34,18 +46,18 @@ And include the web component:
 <script type="module" src="probo-product-configurator.js" rel="text/javascript"></script>
 ```
 
-##### Via CDN 
+#### Via CDN 
 ```javascript
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v1.0.3/probo-product-configurator.js"
+  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v1/probo-product-configurator.js"
   rel="text/javascript"
 ></script>
 ```
 
 ### Proxy
-
-To access the Probo API a proxy is needed. The proxy calls the Probo API `https://api.proboprints.com` and needs to accept the endpoints from the request `body.url`. See below for an example.
+Due to security, you need a proxy to make the calls to Probo, from your front-end to the Probo API.  Some examples are added.
+The proxy calls the Probo API `https://api.proboprints.com` and needs to accept the endpoints from the request `body.url`. See below for an example.
 
 #### PHP
 
@@ -86,14 +98,13 @@ echo $resp;
 
 #### Choose the variant
 There are two ways to use the configurator.
-
 With product search and in a modal:
 
 ```html
 <probo-product-configurator modal></probo-product-configurator>
 ```
 
-Just the configurator:
+Just the configurator
 
 ```html
 <probo-product-configurator></probo-product-configurator>
@@ -106,7 +117,6 @@ Just the configurator:
 await window.proboConfigurator
     .init({
         proxy: '/api',
-    })
 });
 ```
 
@@ -135,12 +145,11 @@ await window.proboConfigurator
             country: 'NL',
             email: 'probo@probo.nl',
         },
-    })
 });
 
 ```
-Or set it with it's method: 
-```
+Or set it with its method: 
+```javascript
 window.proboConfigurator.setAddress({
     companyName: 'Probo',
     firstName: 'John',
@@ -160,8 +169,7 @@ window.proboConfigurator.setAddress({
 await window.proboConfigurator
     .init({
         proxy: '/api',
-    })
-}).openSearch();
+    }).openSearch();
 ```
 
 Or after:
@@ -176,8 +184,7 @@ window.proboConfigurator.openSearch()
 await window.proboConfigurator
     .init({
         proxy: '/api',
-    })
-}).setProduct('banner-510');
+    }).setProduct('banner-510');
 ```
 
 And to get the first option call the `getNextOption()` function.
@@ -191,8 +198,7 @@ await window.proboConfigurator
     .init({
         proxy: '/api',
         language: 'en',
-    })
-});
+    });
 ```
 
 or with the `setLanguage` function.
@@ -221,8 +227,7 @@ await window.proboConfigurator
     .init({
         proxy: '/api',
         priceType: 'sales_price',
-    })
-});
+    });
 ```
 
 or with the `setPriceType` function.
@@ -245,68 +250,66 @@ The Payload can either be just a product:
 
 ```json
 {
-    "products": [
+  "products": [
+    {
+      "code": "banner-510",
+      "options": [
         {
-            "code": "banner-510",
-            "options": [
-                {
-                    "code": "width",
-                    "value": 2000
-                },
-                {
-                    "code": "height",
-                    "value": 2000
-                },
-                                {
-                    "code": "amount",
-                    "value": 4
-                },
-                ...
-            ]
+          "code": "width",
+          "value": 2000
+        },
+        {
+          "code": "height",
+          "value": 2000
+        },
+        {
+          "code": "amount",
+          "value": 4
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
-Or also contains the address, so the deliveries get fetched as well:
+Or can also contain the address, so the deliveries get fetched as well:
 
 ```json
 {
-    "deliveries": [
+  "deliveries": [
+    {
+      "address": {
+        "companyName": "Probo",
+        "firstName": "John",
+        "lastName": "Doe",
+        "street": "Fortuinweg",
+        "houseNumber": "17",
+        "postalCode": "9101 PE",
+        "city": "Dokkum",
+        "country": "NL",
+        "email": "printprofessionals@probo.nl"
+      }
+    }
+  ],
+  "products": [
+    {
+      "code": "banner-510",
+      "options": [
         {
-            "address": {
-                "companyName": "Probo",
-                "firstName": "John",
-                "lastName": "Doe",
-                "street": "Fortuinweg",
-                "houseNumber": "17",
-                "postalCode": "9101 PE",
-                "city": "Dokkum",
-                "country": "NL",
-                "email": "printprofessionals@probo.nl"
-            },
-        }
-    ],
-    "products": [
+          "code": "width",
+          "value": 2000
+        },
         {
-            "code": "banner-510",
-            "options": [
-                {
-                    "code": "width",
-                    "value": 2000
-                },
-                {
-                    "code": "height",
-                    "value": 2000
-                },
-                {
-                    "code": "amount",
-                    "value": 4
-                },
-                ...
-            ]
+          "code": "height",
+          "value": 2000
+        },
+        {
+          "code": "amount",
+          "value": 4
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
@@ -320,7 +323,7 @@ When the configuration is finished you call the `window.proboConfigurator.getRes
 
 Simple example output:
 
-```
+```json
 {
   "excerpt": {
     "product": {
@@ -376,8 +379,10 @@ And `proboConfigurator.getUploaderData()` to get the uploader data.
 
 By calling `proboConfigurator.clear()` all options are reset and the component should return to its initial state.
 
-## License
+## Reporting issues or requests
+If you have issues or feature requests, please create a GitHub issue.
 
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
