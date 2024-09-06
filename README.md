@@ -19,7 +19,7 @@ Probo is one of the largest Printing on Demand suppliers in Western Europe and a
 
 
 ## Getting Started
-Before you get started you need to have an Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
+Before you get started you need to have a Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
 
 ### Register an account
 
@@ -72,7 +72,7 @@ $rawData = file_get_contents('php://input');
 $decodedData = json_decode($rawData, true);
 
 $baseUrl = 'https://api.proboprints.com';
-$token = 'YOURAPITOKEN';
+$token = 'YOUR_API_TOKEN';
 
 $curl = curl_init();
 
@@ -123,7 +123,7 @@ await window.proboConfigurator
 });
 ```
 
-Or add the props to the component and it will call the init function within.
+Or add the props to the component, and it will call the init function within.
 ```javaScript
   <probo-product-configurator
     proxy="/api"
@@ -212,18 +212,15 @@ window.proboConfigurator.setLanguage('en')
 
 Or as prop
 
-```javaScript
-  <probo-product-configurator
-    ...
-    language="en"
-  />
+```html
+  <probo-product-configurator language="en" />
 ```
 
 The available languages are Dutch (nl), English (en) and German(de).
 
 ### Price types
 
-If another price type is needed or you want to add VAT set it via the init function:
+If another price type is needed, or you want to add VAT set it via the init function:
 
 ```javascript
 await window.proboConfigurator
@@ -318,7 +315,7 @@ Or can also contain the address, so the deliveries get fetched as well:
 
 ### Finishing configuration
 
-When a configuration is orderable the `proboConfigurator:finished` event is dispatched on the window.
+When a configuration is complete and can be used in an order, the `proboConfigurator:finished` event is dispatched on the window.
 
 ### Getting results
 
@@ -387,6 +384,13 @@ If you have issues or feature requests, please create a GitHub issue.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Disclaimer
+This tool is designed to assist in visually configuring a Probo product and generating the corresponding payload. As the integrator of this configurator, you are responsible for ensuring the payload remains valid when used, for example, in the order payload.
+
+Please note that configurations may sometimes become invalid due to unforeseen changes in the product setup. While Probo strives to minimize these issues and inform you in a timely manner, it is your responsibility to revalidate the payload before use. Revalidation can be done through this tool or other available methods.
+
+The use of this tool does not grant any rights.
 
 ---
 
