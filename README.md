@@ -65,7 +65,7 @@ The proxy calls the Probo API `https://api.proboprints.com` and needs to accept 
 #### PHP example
 
 - Create a folder `api`
-- Create a new blank file `index.php`
+- Create in the `api` folder a new `index.php`
 - Put the contents of the example below in the index.php
 - Update the token
 
