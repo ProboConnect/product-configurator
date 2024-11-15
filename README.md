@@ -243,6 +243,48 @@ window.proboConfigurator.setPriceType('sales_price', true)
 
 The default is `purchase_price`, excluding VAT.
 
+### Overwriting API data
+If there is a need to change a title, description or image of an option or product you can use the overwrites property.
+
+```javascript
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+        overwrites: [
+          {
+            "code": "walltex-pro",
+            "overwrites": {
+              "title": "Walltex pro",
+              "description": "Naadloos behang met plaklaag",
+              "image": "image.jpg"
+            }
+          },
+      ]
+    });
+```
+Or maybe not showing a product at all, then you can hide it. It will not show up in search results or options for a step.
+
+```javascript
+await window.proboConfigurator
+    .init({
+        proxy: '/api',
+        overwrites: [
+          {
+            "code": "outdoor-mat",
+            "overwrites": {
+              "hide": true
+            }
+          },
+      ]
+    });
+```
+
+Overwrites also have their own method, but can only be set on init.
+
+```javascript
+window.proboConfigurator.init().setOverwrites()
+```
+
 ### Configuring by payload
 
 The configurator can be set with an existing payload as follows:
