@@ -384,6 +384,37 @@ And `proboConfigurator.getUploaderData()` to get the uploader data.
 
 By calling `proboConfigurator.clear()` all options are reset and the component should return to its initial state.
 
+## Customizing the configurator
+As the configurator is a web component, styling it directly is not possible. Therefore there are several CSS ::part selectors made available to style the configurator.
+
+By selecting the part you can change the color of the background, font, etc. For most values you'll have to add the !important property to override the default styling.
+
+```css
+probo-product-configurator::part(configurator) {
+  background-color: #324342 !important
+}
+```
+
+Element | Part 
+------------- | ------------- 
+configurator (container) | configurator  
+step (container) | step
+step title | step-title
+step subtitle | step-stubtitle
+open state indicator icon | state-indicator-icon
+option card (container) | option
+option card selected state | option-selected
+option title | option-title
+option description | option-description
+delivery step | delivery-step
+delivery step title | delivery-step-title
+delivery step subtitle | delivery-step-subtitle
+delivery option day | delivery-option-day
+delivery option date | delivery-option-date
+delivery option cost | delivery-option-cost
+delivery option no cost | delivery-option-no-cost
+
+
 ## Reporting issues or requests
 If you have issues or feature requests, please create a GitHub issue.
 
