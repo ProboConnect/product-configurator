@@ -34368,61 +34368,65 @@ function lM(e, t) {
 function sM(e, t) {
   return e.length === 0 ? !0 : t.some((r) => r.code === "no-option") || t.some((r) => r.code === "amount" && (r.value === 0 || r.value === "")) ? !1 : !(t != null && t.includes(void 0));
 }
-function cM(e, t, a) {
-  let r = "";
-  a === "accessories-cross-sell" ? r = "unit" : (a === "material" || a === "materialType") && (r = "meter");
-  const o = e.map((n) => {
-    let i;
-    return (n.type_code === "number" || n.type_code === "decimal") && (i = {
-      value: n.default_value || parseFloat(n.min_value),
-      unit: n.unit_code,
-      min: n.min_value,
-      max: n.max_value,
+function cM(e, t, a, r) {
+  let o = "";
+  a === "accessories-cross-sell" ? o = "unit" : (a === "material" || a === "materialType") && (o = "meter");
+  const n = e.map((i) => {
+    const l = r.find((d) => d.code === i.code);
+    let s;
+    return (i.type_code === "number" || i.type_code === "decimal") && (s = {
+      value: i.default_value || parseFloat(i.min_value),
+      unit: i.unit_code,
+      min: i.min_value,
+      max: i.max_value,
       buttonText: Ft.global.t("global.labels.continue")
     }), {
-      code: n.code,
-      title: n == null ? void 0 : n.name,
-      description: n == null ? void 0 : n.description,
-      image: n.images.length ? n.images[0].url : void 0,
-      price: n.price ? n.price[t] : void 0,
-      pricePer: r,
-      unit: n.unit_code,
-      reversible: n.reversible,
-      min: n.min_value,
-      max: n.max_value,
-      available: n == null ? void 0 : n.available,
-      amount: n.default_value,
-      customInput: i,
-      labels: n.label ? [
+      code: i.code,
+      title: (l == null ? void 0 : l.overwrites.title) || (i == null ? void 0 : i.name),
+      description: (l == null ? void 0 : l.overwrites.description) || (i == null ? void 0 : i.description),
+      image: l != null && l.overwrites.image || i.images.length ? i.images[0].url : void 0,
+      price: i.price ? i.price[t] : void 0,
+      pricePer: o,
+      unit: i.unit_code,
+      reversible: i.reversible,
+      min: i.min_value,
+      max: i.max_value,
+      available: i == null ? void 0 : i.available,
+      amount: i.default_value,
+      customInput: s,
+      labels: i.label ? [
         {
-          text: n.label,
+          text: i.label,
           color: "red"
         }
       ] : void 0
     };
+  }).filter((i) => {
+    const l = r.find((s) => s.code === i.code);
+    return !(l != null && l.overwrites.hide);
   });
-  return a === "accessories-cross-sell" && !o.some((n) => n.noOption) && o.unshift({
+  return a === "accessories-cross-sell" && !n.some((i) => i.noOption) && n.unshift({
     code: "no-option",
     noOption: !0,
     noOptionText: Ft.global.t("no_accessoires")
-  }), o;
+  }), n;
 }
-function dM(e, t, a, r) {
-  const o = t.map((s) => {
-    var w, y;
-    const d = ["width", "height", "amount"];
-    let h = (w = s.children) != null && w.find((x) => d.includes(x.type_code)) ? "simple" : "options";
-    const f = (y = s.children) != null && y.find((x) => ["width", "height"].includes(x.code)) ? "measurement" : "amount", m = cM(s.children, r, s.code);
-    let { code: v } = s;
-    return v === "accessories-cross-sell" && (v = "accessories", h = "options-multiple"), {
-      code: v,
-      title: s.name,
-      type: h,
-      control: f,
-      options: m
+function dM(e, t, a, r, o) {
+  const n = t.map((d) => {
+    var y, x;
+    const h = ["width", "height", "amount"];
+    let f = (y = d.children) != null && y.find((g) => h.includes(g.type_code)) ? "simple" : "options";
+    const m = (x = d.children) != null && x.find((g) => ["width", "height"].includes(g.code)) ? "measurement" : "amount", v = cM(d.children, r, d.code, o);
+    let { code: w } = d;
+    return w === "accessories-cross-sell" && (w = "accessories", f = "options-multiple"), {
+      code: w,
+      title: d.name,
+      type: f,
+      control: m,
+      options: v
     };
-  }), n = e.find((s) => s.code === "size"), i = a !== -1 && n && n.type === "simple" ? a - 1 : a;
-  return [...P3(e, i), ...o];
+  }), i = e.find((d) => d.code === "size"), l = a !== -1 && i && i.type === "simple" ? a - 1 : a;
+  return [...P3(e, l), ...n];
 }
 function Z3(e) {
   let t = 1 / 0, a;
@@ -34469,7 +34473,7 @@ function D3(e) {
 }
 class hM {
   constructor({ proxy: t, version: a }) {
-    this.proxy = t, this.version = a || "", this.repository = new B3({ proxy: t }), this.product = new g2({}), this.productConfig = new w2({}), this.address = new Oi({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {}, this.upload = !1, this.uploaders = [], this.payload = {};
+    this.proxy = t, this.version = a || "", this.repository = new B3({ proxy: t }), this.product = new g2({}), this.productConfig = new w2({}), this.address = new Oi({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {}, this.upload = !1, this.uploaders = [], this.payload = {}, this.overwrites = [];
   }
   /**
    * Set the code of the product and get the first step for the product.
@@ -34530,7 +34534,7 @@ class hM {
       if ([r] = this.payload.products, typeof r == "object" && r) {
         this.alert = {}, (t = this.options[this.options.length - 1]) != null && t.alert && delete this.options[this.options.length - 1].alert;
         let o = r.available_options;
-        if (((a = o[0]) == null ? void 0 : a.code) === "size" && o.length === 2 && (o = o.slice(0, 1)), this.options = dM(this.options, o, this.lastChangedIndex, this.priceType), this.setOpenState(), this.setStatuses(), r.can_order) {
+        if (((a = o[0]) == null ? void 0 : a.code) === "size" && o.length === 2 && (o = o.slice(0, 1)), this.options = dM(this.options, o, this.lastChangedIndex, this.priceType, this.overwrites), this.setOpenState(), this.setStatuses(), r.can_order) {
           this.canOrder = !0, r.upload === !0 && (this.upload = !0, this.uploaders = r.uploaders);
           const n = new Event("proboConfigurator:finished");
           window.dispatchEvent(n);
@@ -34656,6 +34660,10 @@ class hM {
   clear() {
     return this.product = new g2({}), this.productConfig = new w2({}), this.address = new Oi({}), this.openState = [], this.options = [], this.lastChangedIndex = -1, this.deliveryOptions = [], this.canOrder = !1, this.updateExternal = !0, this.prices = {}, this;
   }
+  /** Set overwrites for certain products, can only be called on init. */
+  setOverwrites(t) {
+    return this.options.length === 0 ? this.overwrites = t : console.error("Overwrites can only be set on init"), this;
+  }
 }
 class fM extends hM {
   constructor({ proxy: t }) {
@@ -34669,20 +34677,28 @@ class fM extends hM {
    * @param {object} address - the address to be set
    * @param {string} priceType - the price type to be set
    * @param {boolean} includeVat - whether to include vat in the price
+   * @param {array} overwrites - the overwrites to be set
    *
    * @example
    * window.proboConfigurator.init({ proxy: '/api', language: 'nl', address: {}, priceType: 'purchase_price' })
    */
-  init({ proxy: t = "/api", language: a = "nl", address: r, priceType: o, includeVat: n = !1 }) {
-    this.proxy = t, this.repository = new B3({ proxy: t }), this.setLanguage(a), r && this.setAddress(r), o && this.setPriceType(o, n);
-    const i = new CustomEvent("proboConfigurator:ready", {
+  init({ proxy: t = "/api", language: a = "nl", address: r, priceType: o, includeVat: n = !1, overwrites: i = [] }) {
+    this.proxy = t, this.repository = new B3({ proxy: t }), this.setLanguage(a), r && this.setAddress(r), o && this.setPriceType(o, n), i.length && this.setOverwrites(i);
+    const l = new CustomEvent("proboConfigurator:ready", {
       detail: this
     });
-    return window.dispatchEvent(i), this;
+    return window.dispatchEvent(l), this;
   }
   /** Get all products from endpoint */
   async getProducts() {
-    this.products = await this.repository.getProducts();
+    if (this.overwrites.length) {
+      const t = await this.repository.getProducts();
+      this.products = t.filter((a) => {
+        const r = this.overwrites.find((o) => o.code === a.code);
+        return !(r != null && r.overwrites.hide);
+      });
+    } else
+      this.products = await this.repository.getProducts();
   }
   /**
    * @returns {object} - The result of the configurator
