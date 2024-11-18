@@ -23214,7 +23214,7 @@ class b$ extends v$ {
       return;
     }
     const r = e.products[0], { options: o, code: n } = r, a = this;
-    await this.setProduct(n), e.deliveries && Object.keys((s = e.deliveries[0]) == null ? void 0 : s.address).length && this.setAddress((l = e.deliveries[0]) == null ? void 0 : l.address), this.openConfigurator();
+    await this.setProduct(n, !0), e.deliveries && Object.keys((s = e.deliveries[0]) == null ? void 0 : s.address).length && this.setAddress((l = e.deliveries[0]) == null ? void 0 : l.address), this.openConfigurator();
     async function i(c) {
       if (!(c >= o.length + 1)) {
         try {
