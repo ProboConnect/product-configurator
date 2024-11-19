@@ -23355,8 +23355,8 @@ const w$ = { class: "relative h-full" }, y$ = { key: 0 }, x$ = { class: "font-me
       get: () => r.getConfig(),
       set: (n) => r.updateExternal ? r.setOption(n).getNextOption() : null
     });
-    return Zt(() => {
-      window.proboConfigurator = r, e.proxy && (r.init({ proxy: e.proxy, language: e.language, priceType: e.priceType }), e.productCode && r.setProduct(e.productCode).getNextOption());
+    return Zt(async () => {
+      window.proboConfigurator = r, e.proxy && (r.init({ proxy: e.proxy, language: e.language, priceType: e.priceType }), e.productCode && await (await r.setProduct(e.productCode)).getNextOption());
     }), (n, a) => t.modal ? ($(), de(C$, {
       key: 0,
       part: "modal"
