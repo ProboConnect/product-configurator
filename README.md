@@ -1,7 +1,7 @@
-# Probo Product Configurator
+# Connect Product Configurator
 
-The Probo Product Configurator is a webcomponent that allows your customers to effortlessly customize Probo Products within your application.
-The configurator is a wrapper for the /products/configure endpoint of the [Probo API](https://apidocs.proboprints.com/)
+The Connect Product Configurator is a webcomponent that allows your customers to effortlessly customize Probo Products within your application.
+The configurator is a wrapper for the /products/configure endpoint of the [Connect API](https://apidocs.proboprints.com/)
 
 ## Features
 
@@ -9,7 +9,7 @@ The configurator is a wrapper for the /products/configure endpoint of the [Probo
 
 - **Responsive Design**: The application is built with a responsive design to ensure a seamless experience across different devices and screen sizes.
 
-- **Easy Integration**: Probo Product Configurator can be easily integrated into existing websites and e-commerce platforms as a web component, providing a consistent user experience.
+- **Easy Integration**: Connect Product Configurator can be easily integrated into existing websites and e-commerce platforms as a web component, providing a consistent user experience.
 
 ## About Probo
 Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux.
@@ -284,6 +284,19 @@ Overwrites also have their own method, but can only be set on init.
 ```javascript
 window.proboConfigurator.init().setOverwrites()
 ```
+
+### Saving products locally
+
+Because getting the products every time you search can be a lot, the `storeProductsLocally` parameter can store these in the user's session (so they will be removed when closing the tab).
+
+```javascript
+await window.proboConfigurator
+    .init({
+        storeProductsLocally: true,
+    })
+```
+
+It's also available as a prop on the element.
 
 ### Configuring by payload
 
