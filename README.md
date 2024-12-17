@@ -46,14 +46,14 @@ git clone https://github.com/ProboConnect/product-configurator.git
 And include the web component:
 
 ```html
-<script type="module" src="probo-product-configurator.js" rel="text/javascript"></script>
+<script type="module" src="connect-product-configurator.js" rel="text/javascript"></script>
 ```
 
 #### Via CDN 
 ```javascript
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v1/probo-product-configurator.js"
+  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v2/connect-product-configurator.js"
   rel="text/javascript"
 ></script>
 ```
@@ -109,20 +109,20 @@ There are two ways to use the configurator.
 With product search and in a modal:
 
 ```html
-<probo-product-configurator modal></probo-product-configurator>
+<connect-product-configurator modal></connect-product-configurator>
 ```
 
 Just the configurator
 
 ```html
-<probo-product-configurator></probo-product-configurator>
+<connect-product-configurator></connect-product-configurator>
 ```
 
 #### Initialization
-1. Call either the `init` function on the proboConfigurator client and provide the proxy URL.
+1. Call either the `init` function on the connectConfigurator client and provide the proxy URL.
 
 ```javaScript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
 });
@@ -130,7 +130,7 @@ await window.proboConfigurator
 
 Or add the props to the component, and it will call the init function within.
 ```javaScript
-  <probo-product-configurator
+  <connect-product-configurator
     proxy="/api"
     product-code="banner-510"
   />
@@ -139,7 +139,7 @@ Or add the props to the component, and it will call the init function within.
 If you need deliveries you need to add an address as well. Due to web component limitations, this cannot be done by prop.
 
 ```javaScript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
         address: {
@@ -158,7 +158,7 @@ await window.proboConfigurator
 ```
 Or set it with its method: 
 ```javascript
-window.proboConfigurator.setAddress({
+window.connectConfigurator.setAddress({
     companyName: 'Probo',
     firstName: 'John',
     lastName: 'Doe',
@@ -174,7 +174,7 @@ window.proboConfigurator.setAddress({
 2. When using the search functionality call the `openSearch` function to open the search modal. Either chained with the `init` function:
 
 ```javaScript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
     }).openSearch();
@@ -183,13 +183,13 @@ await window.proboConfigurator
 Or after:
 
 ```javascript
-window.proboConfigurator.openSearch()
+window.connectConfigurator.openSearch()
 ```
 
 3. Or when using the configurator without search (or product-code prop) set the product with the `setProduct` function and API code:
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
     }).setProduct('banner-510');
@@ -202,7 +202,7 @@ And to get the first option call the `getNextOption()` function.
 The default language of the configurator is Dutch. If another is needed, for example English, either add it in the `init` function:
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
         language: 'en',
@@ -212,13 +212,13 @@ await window.proboConfigurator
 or with the `setLanguage` function.
 
 ```javascript
-window.proboConfigurator.setLanguage('en')
+window.connectConfigurator.setLanguage('en')
 ```
 
 Or as prop
 
 ```html
-  <probo-product-configurator language="en" />
+  <connect-product-configurator language="en" />
 ```
 
 The available languages are Dutch (nl), English (en) and German(de).
@@ -228,7 +228,7 @@ The available languages are Dutch (nl), English (en) and German(de).
 If another price type is needed, or you want to add VAT set it via the init function:
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
         priceType: 'sales_price',
@@ -238,7 +238,7 @@ await window.proboConfigurator
 or with the `setPriceType` function.
 
 ```javascript
-window.proboConfigurator.setPriceType('sales_price', true)
+window.connectConfigurator.setPriceType('sales_price', true)
 ```
 
 The default is `purchase_price`, excluding VAT.
@@ -247,7 +247,7 @@ The default is `purchase_price`, excluding VAT.
 If there is a need to change a title, description or image of an option or product you can use the overwrites property.
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
         overwrites: [
@@ -265,7 +265,7 @@ await window.proboConfigurator
 Or maybe not showing a product at all, then you can hide it. It will not show up in search results or options for a step.
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         proxy: '/api',
         overwrites: [
@@ -282,7 +282,7 @@ await window.proboConfigurator
 Overwrites also have their own method, but can only be set on init.
 
 ```javascript
-window.proboConfigurator.init().setOverwrites()
+window.connectConfigurator.init().setOverwrites()
 ```
 
 ### Saving products locally
@@ -290,7 +290,7 @@ window.proboConfigurator.init().setOverwrites()
 Because getting the products every time you search can be a lot, the `storeProductsLocally` parameter can store these in the user's session (so they will be removed when closing the tab).
 
 ```javascript
-await window.proboConfigurator
+await window.connectConfigurator
     .init({
         storeProductsLocally: true,
     })
@@ -303,7 +303,7 @@ It's also available as a prop on the element.
 The configurator can be set with an existing payload as follows:
 
 ```javascript
-window.proboConfigurator.setFromPayload(payload)
+window.connectConfigurator.setFromPayload(payload)
 ```
 
 The Payload can either be just a product:
@@ -375,11 +375,11 @@ Or can also contain the address, so the deliveries get fetched as well:
 
 ### Finishing configuration
 
-When a configuration is complete and can be used in an order, the `proboConfigurator:finished` event is dispatched on the window.
+When a configuration is complete and can be used in an order, the `connectConfigurator:finished` event is dispatched on the window.
 
 ### Getting results
 
-When the configuration is finished you call the `window.proboConfigurator.getResult()` to get the configuration and excerpt of the product.
+When the configuration is finished you call the `window.connectConfigurator.getResult()` to get the configuration and excerpt of the product.
 
 Simple example output:
 
@@ -427,17 +427,17 @@ Simple example output:
 
 ### Getting the upload data
  
-Use `proboConfigurator.needsUpload()` to determine if an upload is needed.
+Use `connectConfigurator.needsUpload()` to determine if an upload is needed.
 
-And `proboConfigurator.getUploaderData()` to get the uploader data.
+And `connectConfigurator.getUploaderData()` to get the uploader data.
 
 ### Getting the raw payload
 
-`proboConfigurator.getRaw()` returns the whole unmapped API payload;
+`connectConfigurator.getRaw()` returns the whole unmapped API payload;
 
 ### Clearing the config
 
-By calling `proboConfigurator.clear()` all options are reset and the component should return to its initial state.
+By calling `connectConfigurator.clear()` all options are reset and the component should return to its initial state.
 
 ## Customizing the configurator
 As the configurator is a web component, styling it directly is not possible. Therefore there are several CSS ::part selectors made available to style the configurator.
@@ -445,7 +445,7 @@ As the configurator is a web component, styling it directly is not possible. The
 By selecting the part you can change the color of the background, font, etc. For most values you'll have to add the !important property to override the default styling.
 
 ```css
-probo-product-configurator::part(configurator) {
+connect-product-configurator::part(configurator) {
   background-color: #324342 !important
 }
 ```
