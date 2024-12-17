@@ -1,7 +1,7 @@
 # Connect Product Configurator
 
 The Connect Product Configurator is a webcomponent that allows your customers to effortlessly customize Probo Products within your application.
-The configurator is a wrapper for the /products/configure endpoint of the [Connect API](https://apidocs.proboprints.com/)
+The configurator is a wrapper for the /products/configure endpoint of the [Probo API](https://apidocs.proboprints.com/)
 
 ## Features
 
