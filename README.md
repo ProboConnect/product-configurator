@@ -197,6 +197,13 @@ await window.connectConfigurator
 
 And to get the first option call the `getNextOption()` function.
 
+```javascript
+await (await window.connectConfigurator
+    .init({
+        proxy: '/api',
+    }).setProduct('banner-510')).getNextOption();
+```
+
 ### Language
 
 The default language of the configurator is Dutch. If another is needed, for example English, either add it in the `init` function:
@@ -284,6 +291,28 @@ Overwrites also have their own method, but can only be set on init.
 ```javascript
 window.connectConfigurator.init().setOverwrites()
 ```
+
+#### Skipping steps
+
+You are able to skip steps when providing a default option to the overwrites.
+
+```JSON
+  {
+    "code": "deco-fabric",
+    "overwrites": {
+      "steps": [
+        {
+          "code": "finishing-per-side-all-sides",
+          "overwrites": {
+            "hidden": true,
+            "selected": "finishing-all-sides"
+          }
+        }
+      ]
+    }
+  },
+```
+
 
 ### Saving products locally
 
@@ -373,6 +402,10 @@ Or can also contain the address, so the deliveries get fetched as well:
 }
 ```
 
+### Option selected event
+
+Whenever an option is selected the `connectConfigurator:option-selected` event is fired with the selected option available in the event.detail parameter.
+
 ### Finishing configuration
 
 When a configuration is complete and can be used in an order, the `connectConfigurator:finished` event is dispatched on the window.
@@ -424,6 +457,51 @@ Simple example output:
   }
 }
 ```
+
+### Storing the configuration
+
+The `storeConfiguration()` method saves a single configuration.
+
+Usage: 
+
+```javaScript
+connectConfigurator.storeConfiguration("banner_510_100x100", {
+  code: "banner-510",
+  options: [
+    {
+      code: "width",
+      value: "100",
+    },
+    {
+      code: "height",
+      value: "100",
+    },
+    {
+      code: "amount",
+      value: "1",
+    },
+    {
+      code: "finishing-all-sides",
+    },
+    {
+      code: "cut",
+    },
+    {
+      code: "customer-supplied-file",
+    },
+  ],
+});
+```
+
+If the config is omitted, the current configurated product is used.
+
+### Updating a stored configuration
+
+To update a stored configuration use the `connectConfigurator.updateConfiguration()` method.
+
+### Creating an uploader session
+
+With `connectConfigurator.getUploaderSession(callback_url)` you can get an uploader session for your configuration.
 
 ### Getting the upload data
  
