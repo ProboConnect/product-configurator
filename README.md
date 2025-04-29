@@ -313,6 +313,9 @@ You are able to skip steps when providing a default option to the overwrites.
   },
 ```
 
+### Passing a custom product ID
+
+Add `internalProductId` to the init function or when using props as `internal-product-id`. It will be added as a parameter to the api URL and will be available in your proxy.
 
 ### Saving products locally
 
@@ -533,7 +536,7 @@ Element | Part
 configurator (container) | configurator  
 step (container) | step
 step title | step-title
-step subtitle | step-stubtitle
+step subtitle | step-subtitle
 open state indicator icon | state-indicator-icon
 option card (container) | option
 option card selected state | option-selected
