@@ -24044,7 +24044,7 @@ class F3 {
           });
         }
         if (this.setOpenState(), this.setStatuses(), n.can_order) {
-          this.canOrder = !0, n.upload === !0 && (this.upload = !0, this.uploaders = n.uploaders);
+          this.canOrder = !0, this.payload.calculation_id && (this.calculationId = this.payload.calculation_id), n.upload === !0 && (this.upload = !0, this.uploaders = n.uploaders);
           const s = new Event("connectConfigurator:finished");
           window.dispatchEvent(s);
         } else n.can_order === !1 && this.canOrder && (this.canOrder = !1);
