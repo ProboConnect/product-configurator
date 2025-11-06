@@ -250,6 +250,10 @@ window.connectConfigurator.setPriceType('sales_price', true)
 
 The default is `purchase_price`, excluding VAT.
 
+### Hiding the delivery section
+
+To hide the delivery section at the end set the `hideDeliverysection` parameter to `true`.
+
 ### Overwriting API data
 If there is a need to change a title, description or image of an option or product you can use the overwrites property.
 
