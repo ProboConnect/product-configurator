@@ -9681,7 +9681,7 @@ function us(e) {
 }
 class s0 {
   constructor({ proxy: t, version: a }) {
-    this.initialized = !1, this.proxy = t, this.version = a || "", this.repository = new ns({ proxy: t }), this.product = new hn({}), this.productInfo = {}, this.productConfig = new vn({}), this.address = new uo({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {}, this.upload = !1, this.uploaders = [], this.payload = {}, this.overwrites = [], this.calculationId = null, this.showDeliverySection = !1, this.timeOut = null;
+    this.initialized = !1, this.proxy = t, this.version = a || "", this.repository = new ns({ proxy: t }), this.product = new hn({}), this.productInfo = {}, this.productConfig = new vn({}), this.address = new uo({}), this.openState = [], this.options = [], this.loading = !1, this.lastChangedIndex = -1, this.priceType = "purchase_price", this.deliveryOptions = [], this.language = "nl", this.prices = {}, this.canOrder = !1, this.alert = {}, this.upload = !1, this.uploaders = [], this.payload = {}, this.overwrites = [], this.calculationId = null, this.hideDeliverySection = !1, this.timeOut = null;
   }
   /**
    * Set the code of the product and get the first step for the product.
@@ -12776,8 +12776,9 @@ const Bv = { class: "inner" }, Lv = {
           template: a.options,
           "accordion-state": a.openState,
           loading: a.loading,
-          "delivery-options": a.deliveryOptions
-        }, null, 8, ["modelValue", "template", "accordion-state", "loading", "delivery-options"])
+          "delivery-options": a.deliveryOptions,
+          "hide-delivery-section": a.hideDeliverySection
+        }, null, 8, ["modelValue", "template", "accordion-state", "loading", "delivery-options", "hide-delivery-section"])
       ]))
     ]));
   }
