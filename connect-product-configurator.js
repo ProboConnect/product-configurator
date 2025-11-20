@@ -10140,7 +10140,7 @@ class d0 extends c0 {
         }
         if (r[l]) {
           let s = l + 1;
-          r[l].code === "width" ? (i.product.options.push(r[l], r[l + 1]), s = l + 2) : ["width", "height"].includes(r[l].code) || i.product.options.push(r[l]), await n(s);
+          r[l].code === "width" ? (i.product.options.push(r[l], r[l + 1], r[l + 2]), s = l + 3) : ["width", "height"].includes(r[l].code) || i.product.options.push(r[l]), await n(s);
         } else
           i.updateExternal = !0;
       }
