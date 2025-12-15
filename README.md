@@ -12,14 +12,16 @@ The configurator is a wrapper for the /products/configure endpoint of the [Probo
 - **Easy Integration**: Connect Product Configurator can be easily integrated into existing websites and e-commerce platforms as a web component, providing a consistent user experience.
 
 ## About Probo
+
 Probo is one of the largest Printing on Demand suppliers in Western Europe and a market leader in the BeNeLux.
+
 - [Probo Nederland](https://www.probo.nl)
 - [Probo Deutschland](https://www.probo.de)
 - [Probo International](https://www.probo.eu)
 
-
 ## Getting Started
-Before you get started you need to have a Probo account and  API token for the ProboAPI. You can request this on your Probo platform.
+
+Before you get started you need to have a Probo account and API token for the ProboAPI. You can request this on your Probo platform.
 
 ### Register an account
 
@@ -28,15 +30,17 @@ Before you get started you need to have a Probo account and  API token for the P
 - [Probo International](https://www.probo.eu)
 
 ### Request a token
+
 - [Probo Nederland API instellingen](https://www.probo.nl/myaccount/apiconnect/index)
 - [Probo Deutschland API Einstellungen](https://www.probo.de/myaccount/apiconnect/index)
 - [Probo International API settings](https://www.probo.eu/myaccount/apiconnect/index)
 
-
 ## Installation
 
 ### Installing the component
-#### Via GIT 
+
+#### Via GIT
+
 Clone the repository:
 
 ```bash
@@ -46,20 +50,26 @@ git clone https://github.com/ProboConnect/product-configurator.git
 And include the web component:
 
 ```html
-<script type="module" src="connect-product-configurator.js" rel="text/javascript"></script>
+<script
+    type="module"
+    src="connect-product-configurator.js"
+    rel="text/javascript"
+></script>
 ```
 
-#### Via CDN 
+#### Via CDN
+
 ```javascript
 <script
-  type="module"
-  src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v2/connect-product-configurator.js"
-  rel="text/javascript"
+    type="module"
+    src="https://cdn.jsdelivr.net/gh/ProboConnect/product-configurator@v2/connect-product-configurator.js"
+    rel="text/javascript"
 ></script>
 ```
 
 ### Proxy
-Due to security, you need a proxy to make calls to Probo from your front end to the Probo API. 
+
+Due to security, you need a proxy to make calls to Probo from your front end to the Probo API.
 The proxy calls the Probo API `https://api.proboprints.com` and needs to accept the endpoints from the request `body.url`. See below for an example.
 
 #### PHP example
@@ -103,8 +113,8 @@ echo $resp;
 
 ### Initializing first steps
 
-
 #### Choose the variant
+
 There are two ways to use the configurator.
 With product search and in a modal:
 
@@ -119,6 +129,7 @@ Just the configurator
 ```
 
 #### Initialization
+
 1. Call either the `init` function on the connectConfigurator client and provide the proxy URL.
 
 ```javaScript
@@ -129,6 +140,7 @@ await window.connectConfigurator
 ```
 
 Or add the props to the component, and it will call the init function within.
+
 ```javaScript
   <connect-product-configurator
     proxy="/api"
@@ -156,7 +168,9 @@ await window.connectConfigurator
 });
 
 ```
-Or set it with its method: 
+
+Or set it with its method:
+
 ```javascript
 window.connectConfigurator.setAddress({
     companyName: 'Probo',
@@ -167,8 +181,8 @@ window.connectConfigurator.setAddress({
     postalCode: '9101 PE',
     city: 'Dokkum',
     country: 'NL',
-    email: 'probo@probo.nl',
-})
+    email: 'probo@probo.nl'
+});
 ```
 
 2. When using the search functionality call the `openSearch` function to open the search modal. Either chained with the `init` function:
@@ -183,7 +197,7 @@ await window.connectConfigurator
 Or after:
 
 ```javascript
-window.connectConfigurator.openSearch()
+window.connectConfigurator.openSearch();
 ```
 
 3. Or when using the configurator without search (or product-code prop) set the product with the `setProduct` function and API code:
@@ -191,17 +205,21 @@ window.connectConfigurator.openSearch()
 ```javascript
 await window.connectConfigurator
     .init({
-        proxy: '/api',
-    }).setProduct('banner-510');
+        proxy: '/api'
+    })
+    .setProduct('banner-510');
 ```
 
 And to get the first option call the `getNextOption()` function.
 
 ```javascript
-await (await window.connectConfigurator
-    .init({
-        proxy: '/api',
-    }).setProduct('banner-510')).getNextOption();
+await (
+    await window.connectConfigurator
+        .init({
+            proxy: '/api'
+        })
+        .setProduct('banner-510')
+).getNextOption();
 ```
 
 ### Language
@@ -209,23 +227,22 @@ await (await window.connectConfigurator
 The default language of the configurator is Dutch. If another is needed, for example English, either add it in the `init` function:
 
 ```javascript
-await window.connectConfigurator
-    .init({
-        proxy: '/api',
-        language: 'en',
-    });
+await window.connectConfigurator.init({
+    proxy: '/api',
+    language: 'en'
+});
 ```
 
 or with the `setLanguage` function.
 
 ```javascript
-window.connectConfigurator.setLanguage('en')
+window.connectConfigurator.setLanguage('en');
 ```
 
 Or as prop
 
 ```html
-  <connect-product-configurator language="en" />
+<connect-product-configurator language="en" />
 ```
 
 The available languages are Dutch (nl), English (en) and German(de).
@@ -235,17 +252,16 @@ The available languages are Dutch (nl), English (en) and German(de).
 If another price type is needed, or you want to add VAT set it via the init function:
 
 ```javascript
-await window.connectConfigurator
-    .init({
-        proxy: '/api',
-        priceType: 'sales_price',
-    });
+await window.connectConfigurator.init({
+    proxy: '/api',
+    priceType: 'sales_price'
+});
 ```
 
 or with the `setPriceType` function.
 
 ```javascript
-window.connectConfigurator.setPriceType('sales_price', true)
+window.connectConfigurator.setPriceType('sales_price', true);
 ```
 
 The default is `purchase_price`, excluding VAT.
@@ -255,45 +271,45 @@ The default is `purchase_price`, excluding VAT.
 To hide the delivery section at the end set the `hideDeliverysection` parameter to `true`.
 
 ### Overwriting API data
+
 If there is a need to change a title, description or image of an option or product you can use the overwrites property.
 
 ```javascript
-await window.connectConfigurator
-    .init({
-        proxy: '/api',
-        overwrites: [
-          {
-            "code": "walltex-pro",
-            "overwrites": {
-              "title": "Walltex pro",
-              "description": "Naadloos behang met plaklaag",
-              "image": "image.jpg"
+await window.connectConfigurator.init({
+    proxy: '/api',
+    overwrites: [
+        {
+            code: 'walltex-pro',
+            overwrites: {
+                title: 'Walltex pro',
+                description: 'Naadloos behang met plaklaag',
+                image: 'image.jpg'
             }
-          },
-      ]
-    });
+        }
+    ]
+});
 ```
+
 Or maybe not showing a product at all, then you can hide it. It will not show up in search results or options for a step.
 
 ```javascript
-await window.connectConfigurator
-    .init({
-        proxy: '/api',
-        overwrites: [
-          {
-            "code": "outdoor-mat",
-            "overwrites": {
-              "hide": true
+await window.connectConfigurator.init({
+    proxy: '/api',
+    overwrites: [
+        {
+            code: 'outdoor-mat',
+            overwrites: {
+                hide: true
             }
-          },
-      ]
-    });
+        }
+    ]
+});
 ```
 
 Overwrites also have their own method, but can only be set on init.
 
 ```javascript
-window.connectConfigurator.init().setOverwrites()
+window.connectConfigurator.init().setOverwrites();
 ```
 
 #### Skipping steps
@@ -308,7 +324,7 @@ You are able to skip steps when providing a default option to the overwrites.
         {
           "code": "finishing-per-side-all-sides",
           "overwrites": {
-            "hidden": true,
+            "hide": true,
             "selected": "finishing-all-sides"
           }
         }
@@ -326,10 +342,9 @@ Add `internalProductId` to the init function or when using props as `internal-pr
 Because getting the products every time you search can be a lot, the `storeProductsLocally` parameter can store these in the user's session (so they will be removed when closing the tab).
 
 ```javascript
-await window.connectConfigurator
-    .init({
-        storeProductsLocally: true,
-    })
+await window.connectConfigurator.init({
+    storeProductsLocally: true
+});
 ```
 
 It's also available as a prop on the element.
@@ -339,32 +354,32 @@ It's also available as a prop on the element.
 The configurator can be set with an existing payload as follows:
 
 ```javascript
-window.connectConfigurator.setFromPayload(payload)
+window.connectConfigurator.setFromPayload(payload);
 ```
 
 The Payload can either be just a product:
 
 ```json
 {
-  "products": [
-    {
-      "code": "banner-510",
-      "options": [
+    "products": [
         {
-          "code": "width",
-          "value": 2000
-        },
-        {
-          "code": "height",
-          "value": 2000
-        },
-        {
-          "code": "amount",
-          "value": 4
+            "code": "banner-510",
+            "options": [
+                {
+                    "code": "width",
+                    "value": 2000
+                },
+                {
+                    "code": "height",
+                    "value": 2000
+                },
+                {
+                    "code": "amount",
+                    "value": 4
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
@@ -372,40 +387,40 @@ Or can also contain the address, so the deliveries get fetched as well:
 
 ```json
 {
-  "deliveries": [
-    {
-      "address": {
-        "companyName": "Probo",
-        "firstName": "John",
-        "lastName": "Doe",
-        "street": "Fortuinweg",
-        "houseNumber": "17",
-        "postalCode": "9101 PE",
-        "city": "Dokkum",
-        "country": "NL",
-        "email": "printprofessionals@probo.nl"
-      }
-    }
-  ],
-  "products": [
-    {
-      "code": "banner-510",
-      "options": [
+    "deliveries": [
         {
-          "code": "width",
-          "value": 2000
-        },
-        {
-          "code": "height",
-          "value": 2000
-        },
-        {
-          "code": "amount",
-          "value": 4
+            "address": {
+                "companyName": "Probo",
+                "firstName": "John",
+                "lastName": "Doe",
+                "street": "Fortuinweg",
+                "houseNumber": "17",
+                "postalCode": "9101 PE",
+                "city": "Dokkum",
+                "country": "NL",
+                "email": "printprofessionals@probo.nl"
+            }
         }
-      ]
-    }
-  ]
+    ],
+    "products": [
+        {
+            "code": "banner-510",
+            "options": [
+                {
+                    "code": "width",
+                    "value": 2000
+                },
+                {
+                    "code": "height",
+                    "value": 2000
+                },
+                {
+                    "code": "amount",
+                    "value": 4
+                }
+            ]
+        }
+    ]
 }
 ```
 
@@ -425,43 +440,43 @@ Simple example output:
 
 ```json
 {
-  "excerpt": {
-    "product": {
-      "description": "5x banner-510 234x234",
-      "description_options": "width: 234, height: 234, amount: 5, finishing-all-sides, cut, customer-supplied-file"
+    "excerpt": {
+        "product": {
+            "description": "5x banner-510 234x234",
+            "description_options": "width: 234, height: 234, amount: 5, finishing-all-sides, cut, customer-supplied-file"
+        }
+    },
+    "configuration": {
+        "products": [
+            {
+                "code": "banner-510",
+                "options": [
+                    {
+                        "code": "width",
+                        "value": 234
+                    },
+                    {
+                        "code": "height",
+                        "value": 234
+                    },
+                    {
+                        "value": 5,
+                        "code": "amount"
+                    },
+                    {
+                        "code": "finishing-all-sides"
+                    },
+                    {
+                        "code": "cut"
+                    },
+                    {
+                        "code": "customer-supplied-file"
+                    }
+                ]
+            }
+        ],
+        "language": "en"
     }
-  },
-  "configuration": {
-    "products": [
-      {
-        "code": "banner-510",
-        "options": [
-          {
-            "code": "width",
-            "value": 234
-          },
-          {
-            "code": "height",
-            "value": 234
-          },
-          {
-            "value": 5,
-            "code": "amount"
-          },
-          {
-            "code": "finishing-all-sides"
-          },
-          {
-            "code": "cut"
-          },
-          {
-            "code": "customer-supplied-file"
-          }
-        ]
-      }
-    ],
-    "language": "en"
-  }
 }
 ```
 
@@ -469,7 +484,7 @@ Simple example output:
 
 The `storeConfiguration()` method saves a single configuration.
 
-Usage: 
+Usage:
 
 ```javaScript
 connectConfigurator.storeConfiguration("banner_510_100x100", {
@@ -511,7 +526,7 @@ To update a stored configuration use the `connectConfigurator.updateConfiguratio
 With `connectConfigurator.getUploaderSession(callback_url)` you can get an uploader session for your configuration.
 
 ### Getting the upload data
- 
+
 Use `connectConfigurator.needsUpload()` to determine if an upload is needed.
 
 And `connectConfigurator.getUploaderData()` to get the uploader data.
@@ -525,43 +540,46 @@ And `connectConfigurator.getUploaderData()` to get the uploader data.
 By calling `connectConfigurator.clear()` all options are reset and the component should return to its initial state.
 
 ## Customizing the configurator
+
 As the configurator is a web component, styling it directly is not possible. Therefore there are several CSS ::part selectors made available to style the configurator.
 
 By selecting the part you can change the color of the background, font, etc. For most values you'll have to add the !important property to override the default styling.
 
 ```css
 connect-product-configurator::part(configurator) {
-  background-color: #324342 !important
+    background-color: #324342 !important;
 }
 ```
 
-Element | Part 
-------------- | ------------- 
-configurator (container) | configurator  
-step (container) | step
-step title | step-title
-step subtitle | step-subtitle
-open state indicator icon | state-indicator-icon
-option card (container) | option
-option card selected state | option-selected
-option title | option-title
-option description | option-description
-delivery step | delivery-step
-delivery step title | delivery-step-title
-delivery step subtitle | delivery-step-subtitle
-delivery option day | delivery-option-day
-delivery option date | delivery-option-date
-delivery option cost | delivery-option-cost
-delivery option no cost | delivery-option-no-cost
-
+| Element                    | Part                    |
+| -------------------------- | ----------------------- |
+| configurator (container)   | configurator            |
+| step (container)           | step                    |
+| step title                 | step-title              |
+| step subtitle              | step-subtitle           |
+| open state indicator icon  | state-indicator-icon    |
+| option card (container)    | option                  |
+| option card selected state | option-selected         |
+| option title               | option-title            |
+| option description         | option-description      |
+| delivery step              | delivery-step           |
+| delivery step title        | delivery-step-title     |
+| delivery step subtitle     | delivery-step-subtitle  |
+| delivery option day        | delivery-option-day     |
+| delivery option date       | delivery-option-date    |
+| delivery option cost       | delivery-option-cost    |
+| delivery option no cost    | delivery-option-no-cost |
 
 ## Reporting issues or requests
+
 If you have issues or feature requests, please create a GitHub issue.
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
+
 This tool is designed to assist in visually configuring a Probo product and generating the corresponding payload. As the integrator of this configurator, you are responsible for ensuring the payload remains valid when used, for example, in the order payload.
 
 Please note that configurations may sometimes become invalid due to unforeseen changes in the product setup. While Probo strives to minimize these issues and inform you in a timely manner, it is your responsibility to revalidate the payload before use. Revalidation can be done through this tool or other available methods.
