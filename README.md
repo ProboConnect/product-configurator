@@ -111,9 +111,9 @@ curl_close($curl);
 echo $resp;
 ```
 
-### Initializing first steps
+## Initializing first steps
 
-#### Choose the variant
+### Choose the variant
 
 There are two ways to use the configurator.
 With product search and in a modal:
@@ -222,6 +222,8 @@ await (
 ).getNextOption();
 ```
 
+## Configuration
+
 ### Language
 
 The default language of the configurator is Dutch. If another is needed, for example English, either add it in the `init` function:
@@ -270,7 +272,23 @@ The default is `purchase_price`, excluding VAT.
 
 To hide the delivery section at the end set the `hideDeliverysection` parameter to `true`.
 
-### Overwriting API data
+### Passing a custom product ID
+
+Add `internalProductId` to the init function or when using props as `internal-product-id`. It will be added as a parameter to the api URL and will be available in your proxy.
+
+### Saving products locally
+
+Because getting the products every time you search can be a lot, the `storeProductsLocally` parameter can store these in the user's session (so they will be removed when closing the tab).
+
+```javascript
+await window.connectConfigurator.init({
+    storeProductsLocally: true
+});
+```
+
+It's also available as a prop on the element.
+
+## Overwriting API data
 
 If there is a need to change a title, description or image of an option or product you can use the overwrites property.
 
@@ -290,7 +308,7 @@ await window.connectConfigurator.init({
 });
 ```
 
-Or maybe not showing a product at all, then you can hide it. It will not show up in search results or options for a step.
+Or maybe not showing a product at all, then you can hide it. It will not show up in search results.
 
 ```javascript
 await window.connectConfigurator.init({
@@ -312,9 +330,9 @@ Overwrites also have their own method, but can only be set on init.
 window.connectConfigurator.init().setOverwrites();
 ```
 
-#### Skipping steps
+### Skipping steps
 
-You are able to skip steps when providing a default option to the overwrites.
+You are able to skip steps when setting `hide: true` and providing a default option to the overwrites.
 
 ```JSON
   {
@@ -333,23 +351,18 @@ You are able to skip steps when providing a default option to the overwrites.
   },
 ```
 
-### Passing a custom product ID
+### Overwriting with the editor
 
-Add `internalProductId` to the init function or when using props as `internal-product-id`. It will be added as a parameter to the api URL and will be available in your proxy.
+To make it easier to set overwrites for a specific product an editor is provided as a seperate component, see `connect-configurator-editor.js`.
+This component is setup the same way as the configurator is, with the exception that the client exists on `window.connectConfiguratorEditor` and the modal mode is not available.
 
-### Saving products locally
+Every step in the editor has an edit button which opens a drawer where one can modify the information and options for that step.
 
-Because getting the products every time you search can be a lot, the `storeProductsLocally` parameter can store these in the user's session (so they will be removed when closing the tab).
+### Getting the overwrites
 
-```javascript
-await window.connectConfigurator.init({
-    storeProductsLocally: true
-});
-```
+If you have set overwrites for a product you can get them by calling `window.connectConfiguratorEditor.getOverwrites()`.
 
-It's also available as a prop on the element.
-
-### Configuring by payload
+## Configuring by payload
 
 The configurator can be set with an existing payload as follows:
 
