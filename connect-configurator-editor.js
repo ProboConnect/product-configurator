@@ -11824,13 +11824,14 @@ class Kv {
       value: typeof s.value == "number" && !Number.isInteger(s.value) ? s.value.toFixed(1) : s.value
     }));
     if (r.length > 0 && !a) {
-      if ((r.length === this.product.options.length && r.every(
-        (d, c) => d.code === this.product.options[c]?.code && d.value === this.product.options[c]?.value
-      ) && this.options.length > 0 || r.find((d) => d.code === "amount")?.value === this.product.options.find((d) => d.code === "amount")?.value) && r.length === 1)
+      const s = r.length === this.product.options.length && r.every(
+        (u, p) => u.code === this.product.options[p]?.code && u.value === this.product.options[p]?.value
+      ), d = r.some((u) => u.code === "amount"), c = r.find((u) => u.code === "amount")?.value === this.product.options.find((u) => u.code === "amount")?.value;
+      if (s && this.options.length > 0 || d && c && r.length === 1)
         return this.optionsChanged = !1, this;
-      for (let d = this.product.options.length - 1; d >= 0; d -= 1)
-        if (this.product.options[d] && r[d] && (this.product.options[d].value && this.product.options[d].value !== r[d].value || this.product.options[d].code && this.product.options[d].code !== r[d].code)) {
-          this.product.options[d].code === "width" ? this.lastChangedIndex = d + 2 : this.product.options[d].code === "height" ? this.lastChangedIndex = d + 1 : this.lastChangedIndex = d;
+      for (let u = this.product.options.length - 1; u >= 0; u -= 1)
+        if (this.product.options[u] && r[u] && (this.product.options[u].value && this.product.options[u].value !== r[u].value || this.product.options[u].code && this.product.options[u].code !== r[u].code)) {
+          this.product.options[u].code === "width" ? this.lastChangedIndex = u + 2 : this.product.options[u].code === "height" ? this.lastChangedIndex = u + 1 : this.lastChangedIndex = u;
           break;
         }
       this.optionsChanged = !0;
@@ -11869,8 +11870,8 @@ class Kv {
       this.optionsChanged = void 0;
       return;
     }
-    if (Fv(this.options, this.product.options)) {
-      if (this.loading = !0, this.productConfig.language || (this.productConfig.language = this.language), this.hasMeasurementOverwrites) {
+    if (console.log("yoohoo"), Fv(this.options, this.product.options)) {
+      if (console.log("yeeyee"), this.loading = !0, this.productConfig.language || (this.productConfig.language = this.language), this.hasMeasurementOverwrites) {
         const r = this.overwrites?.find((o) => o.code === this.product.code)?.overwrites?.steps?.find((o) => o.code === "measurement-amount")?.overwrites?.options?.filter((o) => ho(o.overwrites?.value));
         r?.length && this.product.options.some(
           (i) => ["width", "height", "amount"].includes(i.code)
