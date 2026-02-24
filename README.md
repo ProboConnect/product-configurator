@@ -441,6 +441,10 @@ Or can also contain the address, so the deliveries get fetched as well:
 
 Whenever an option is selected the `connectConfigurator:option-selected` event is fired with the selected option available in the event.detail parameter.
 
+### Recalculated event
+
+Whenever a user recalculates a configuration the `connectConfigurator:recalculated` event is fired.
+
 ### Finishing configuration
 
 When a configuration is complete and can be used in an order, the `connectConfigurator:finished` event is dispatched on the window.
