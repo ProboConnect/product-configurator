@@ -12047,12 +12047,11 @@ class Zv {
               }), await (await this.setOption(c)).getNextOption()));
             });
           }), t || (this.setOpenState(), this.setStatuses()), r.can_order) {
-            if (this.canOrder = !0, this.payload.calculation_id && (this.calculationId = this.payload.calculation_id), r.upload === !0 && (this.upload = !0, this.uploaders = r.uploaders), !t) {
-              const i = new Event(
-                this.isEditor ? "connectConfiguratorEditor:finished" : "connectConfigurator:finished"
-              );
-              window.dispatchEvent(i);
-            }
+            this.canOrder = !0, this.payload.calculation_id && (this.calculationId = this.payload.calculation_id), r.upload === !0 && (this.upload = !0, this.uploaders = r.uploaders);
+            const i = new Event(
+              this.isEditor ? "connectConfiguratorEditor:finished" : "connectConfigurator:finished"
+            );
+            window.dispatchEvent(i);
           } else r.can_order === !1 && this.canOrder && (this.canOrder = !1);
           if (r.can_order && Object.keys(this.address).length && this.address.city) {
             const i = await this.getProductPrice();
@@ -12457,7 +12456,9 @@ const Jv = `*,:after,:before,::backdrop,::file-selector-button{box-sizing:border
       a.recalculate(s);
     }
     function l() {
-      const s = new Event(a.isEditor ? "connectConfiguratorEditor:started" : "connectConfigurator:started");
+      const s = new Event(
+        a.isEditor ? "connectConfiguratorEditor:started" : "connectConfigurator:started"
+      );
       window.dispatchEvent(s);
     }
     return ct(async () => {
