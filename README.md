@@ -437,6 +437,10 @@ Or can also contain the address, so the deliveries get fetched as well:
 }
 ```
 
+### Started event
+
+Whenever the start new configuration button is pressed the `connectConfigurator:started` event is fired.
+
 ### Option selected event
 
 Whenever an option is selected the `connectConfigurator:option-selected` event is fired with the selected option available in the event.detail parameter.
@@ -444,6 +448,10 @@ Whenever an option is selected the `connectConfigurator:option-selected` event i
 ### Finishing configuration
 
 When a configuration is complete and can be used in an order, the `connectConfigurator:finished` event is dispatched on the window.
+
+### Recalculating a configuration
+
+When a user presses the recalculate button the `connectConfigurator:recalculated` event is dispatched.
 
 ### Getting results
 
