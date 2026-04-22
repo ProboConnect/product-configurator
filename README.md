@@ -247,7 +247,9 @@ Or as prop
 <connect-product-configurator language="en" />
 ```
 
-The available languages are Dutch (nl), English (en) and German(de).
+The available languages are Dutch (nl), English (en) and German(de) and product translations are provided for all three languages out of the box.
+
+Spanish (es) is available in the product configurator only, it is currently not supported with product translations. If you need to use the configurator in Spanish, you can customize the option labels using translation overwrites to define your own Spanish strings.
 
 ### Price types
 
