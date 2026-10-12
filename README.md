@@ -583,6 +583,7 @@ connect-product-configurator::part(configurator) {
 | step title                 | step-title              |
 | step subtitle              | step-subtitle           |
 | open state indicator icon  | state-indicator-icon    |
+| option container           | option-container        |
 | option card (container)    | option                  |
 | option card selected state | option-selected         |
 | option title               | option-title            |
