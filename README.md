@@ -505,7 +505,7 @@ Simple example output:
 
 ### Storing the configuration
 
-The `storeConfiguration()` method saves a single configuration.
+The `storeConfiguration()` method saves a single configuration to API products.
 
 Usage:
 
@@ -542,7 +542,9 @@ If the config is omitted, the current configurated product is used.
 
 ### Updating a stored configuration
 
-To update a stored configuration use the `connectConfigurator.updateConfiguration()` method.
+To update a stored API product configuration use the `connectConfigurator.updateConfiguration("banner_510_100x100", {code: "banner-510", ...})` with customer_code and config.
+
+If the config is omitted, the current configurated product is used.
 
 ### Creating an uploader session
 
@@ -581,6 +583,7 @@ connect-product-configurator::part(configurator) {
 | step title                 | step-title              |
 | step subtitle              | step-subtitle           |
 | open state indicator icon  | state-indicator-icon    |
+| option container           | option-container        |
 | option card (container)    | option                  |
 | option card selected state | option-selected         |
 | option title               | option-title            |
