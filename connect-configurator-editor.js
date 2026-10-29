@@ -12822,13 +12822,16 @@ var cv = class {
 		}
 	}
 	getProductExcerpt() {
-		return this.product.options.length === 0 ? null : (this.prices.fullPrice?.deliveries && delete this.prices.fullPrice.deliveries, this.prices.fullPrice?.products && delete this.prices.fullPrice.products, {
+		if (this.product.options.length === 0) return null;
+		this.prices.fullPrice?.deliveries && delete this.prices.fullPrice.deliveries, this.prices.fullPrice?.products && delete this.prices.fullPrice.products;
+		let e = (e) => this.product.options.find((t) => t.code === e)?.value, t = e("amount") ?? e("prefered-amount") ?? this.product.options.find((e) => e.code.startsWith("quantity-"))?.code.slice(9), n = this.selectedProduct && this.selectedProduct.translations && this.selectedProduct.translations[this.language] ? this.selectedProduct.translations[this.language]?.title : this.selectedProduct.translations?.nl.title || this.product.code, r = e("width"), i = e("height");
+		return {
 			product: {
-				description: `${this.product.options.find((e) => e.code === "amount").value}x ${this.selectedProduct && this.selectedProduct.translations && this.selectedProduct.translations[this.language] ? this.selectedProduct.translations[this.language]?.title : this.selectedProduct.translations?.nl.title || this.product.code} ${this.product.options.find((e) => e.code === "width")?.value}x${this.product.options.find((e) => e.code === "height")?.value}`,
+				description: `${t}x ${n} ${(r && i ? `${r}x${i}` : "").trim()}`,
 				description_options: this.product.options.map((e) => e.value ? `${e.code}: ${e.value}` : `${e.code}`).join(", ")
 			},
 			...JSON.parse(this.prices?.fullPrice ? JSON.stringify(this.prices.fullPrice) : null)
-		});
+		};
 	}
 	openConfigurator() {
 		return this.configuratorModal?.showModal(), this;
